@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada · Alfaiataria dos Índices · Geografia 7º</title>
+<style>
+  :root{
+    --palco:#15131a; --palco2:#211e28; --aco:#353042; --aco2:#4a4459;
+    --ambar:#f2d36b; --ciano:#3cc9b6; --terra:#e88fb0; --verde:#3ddc84; --verde2:#248a56;
+    --vermelho:#ef5b5b; --texto:#f1eee8; --cinza:#a39db0; --postit:#ffe88a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:
+    radial-gradient(1100px 480px at 50% -10%,#2a2533,#15131a 60%),var(--palco);
+    color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#16261b,#22381f 55%,#2e2814);padding:26px 18px;text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--verde)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#f4e6b0;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#e2dcd0;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--palco2);color:var(--texto);text-decoration:none;padding:7px 12px;
+    border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--verde);color:#04231a;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--verde);font-size:1.1rem;margin-bottom:8px}
+  .intro ol{margin:8px 0 0 20px}
+  .legenda{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:.8rem}
+  .legenda span{padding:3px 10px;border-radius:12px;font-weight:bold}
+  .lg-c16{background:#3a3212;color:var(--ambar)} .lg-c17{background:#0f3330;color:var(--ciano)}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--palco2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--palco);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .mini:hover{background:#2b2732}
+  .bloco{background:var(--palco2);border:1px solid var(--aco);border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.35)}
+  .bloco.travado{opacity:.55}
+  .bloco-cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#2a2534,#2e2839);border-bottom:1px solid var(--aco)}
+  .bloco-cab .num{background:var(--ambar);color:#2a1a00;font-weight:bold;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bloco.c17 .bloco-cab .num{background:var(--ciano);color:#03262c}
+  .bloco.xx .bloco-cab .num{background:var(--terra);color:#2a0d05}
+  .bloco-cab h3{font-size:1.06rem;color:#fff}
+  .bloco-cab .porto{font-size:.7rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase}
+  .bloco-corpo{padding:16px}
+  .texto p{margin-bottom:10px}
+  .texto ul{margin:0 0 10px 20px}
+  .texto li{margin-bottom:5px}
+  .texto .destaque{color:var(--ambar);font-weight:bold}
+  .bloco.c17 .texto .destaque{color:var(--ciano)}
+  .bloco.xx .texto .destaque{color:var(--terra)}
+  .olhar{background:#2a2614;border-left:3px solid var(--postit);padding:8px 12px;margin:0 0 10px;border-radius:0 8px 8px 0;font-size:.92rem}
+  .olhar b{color:var(--postit)}
+  .cadeado{padding:22px 16px;text-align:center;color:var(--cinza);font-size:.9rem}
+  .perg{background:#1b1921;border:1px solid var(--aco);border-radius:12px;padding:12px;margin-top:14px}
+  .perg.red{border-color:var(--vermelho);box-shadow:0 0 0 1px var(--vermelho)}
+  .perg .tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
+  .tag.conc{background:#0e3a44;color:#8fd9e4}
+  .tag.apl{background:#1d4530;color:#a7e0bf}
+  .perg label{display:block;font-weight:600;margin-bottom:8px}
+  .perg textarea{width:100%;min-height:70px;background:#110f15;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;resize:vertical}
+  .aviso{margin-top:8px;padding:9px 11px;border-radius:8px;font-size:.85rem;display:none}
+  .aviso.amarelo{display:block;background:#4a3d12;border:1px solid var(--ambar);color:#ffe9ad}
+  .aviso.vermelho{display:block;background:#4a1717;border:1px solid var(--vermelho);color:#ffc9c9}
+  .modelo{margin-top:10px;padding:10px 12px;background:#0e2b1f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem;display:none}
+  .modelo.show{display:block}
+  .modelo .lab{color:#8fe0b4;font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+  .chk{margin-top:10px;font-size:.88rem}
+  .chk .item{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .item span{flex:1;min-width:180px}
+  .chk .simnao button{border:1px solid var(--aco2);background:#110f15;color:var(--texto);border-radius:6px;padding:4px 10px;margin-left:4px;font-size:.8rem}
+  .chk .simnao button.sim.ativo{background:var(--verde);border-color:var(--verde);color:#04231a}
+  .chk .simnao button.nao.ativo{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+  .conferir{margin-top:14px;background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:11px 18px;font-size:1rem;font-weight:bold;width:100%}
+  .conferir:disabled{background:#2b2732;color:#7d7789;cursor:not-allowed}
+  .status-bloco{margin-top:10px;text-align:center;font-weight:bold;font-size:.95rem}
+  .prox{margin-top:12px;text-align:center}
+  .prox a{color:var(--verde);text-decoration:none;font-weight:bold}
+  .peg{background:#3a1414;border:2px solid var(--vermelho);border-radius:16px;padding:16px;margin-top:20px}
+  .peg h3{color:#ffb3b3;margin-bottom:10px}
+  .peg ol{margin-left:20px}
+  .peg li{margin-bottom:7px}
+  .cobertura{background:var(--palco2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-top:18px}
+  .cobertura h3{color:var(--verde);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{border:1px solid var(--aco);padding:7px 9px;text-align:left}
+  th{background:#2a2534}
+  .revisar{background:#3a2e06;border:2px solid var(--ambar);border-radius:16px;padding:16px;margin-top:18px}
+  .revisar h3{color:var(--ambar);margin-bottom:8px}
+  .revisar ul{margin-left:18px}
+  .relatorio{background:var(--palco2);border:1px dashed var(--verde);border-radius:14px;padding:16px;margin-top:18px;font-size:.9rem}
+  .relatorio h3{color:var(--verde);margin-bottom:8px}
+  .trilha-fim{background:linear-gradient(120deg,#122a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe0b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#2b2732;color:#7d7789;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--palco2);border:1px solid var(--verde);border-radius:14px;padding:20px;max-width:420px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal button{background:var(--verde);color:#04231a;border:none;border-radius:8px;padding:9px 16px;font-weight:bold}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+
+  h1,h2,h3{font-family:Georgia,'Times New Roman',serif;letter-spacing:.2px}
+  .fita{height:16px;background:
+    repeating-linear-gradient(90deg,rgba(23,21,28,.85) 0 2px,transparent 2px 10px) 0 0/100% 6px no-repeat,
+    repeating-linear-gradient(90deg,rgba(23,21,28,.95) 0 2px,transparent 2px 50px) 0 0/100% 11px no-repeat,
+    linear-gradient(#f2d36b,#e8c654);box-shadow:0 3px 8px rgba(0,0,0,.45)}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Alfaiataria dos Índices · Geografia 7º ano · CCF</div>
+  <h1>📖 Leitura Guiada — A Fita Métrica</h1>
+  <p>Capítulos 16 e 17 · Prova 29/10 · Callis Geografia 7 – Livro 2 (pp. 50–77)</p>
+</header>
+<div class="fita"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a class="on" href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html" data-etapa="quiz">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🧵 Bem-vindo(a) ao ateliê</h2>
+    <p>Você é aprendiz no <b>Ateliê dos Índices</b>. Aqui não se mede gente para fazer roupa: aqui se tiram as <b>medidas de um país</b>. Cada bloco é uma <b>Medida</b> na fita métrica: as <b>7 primeiras</b> são do Capítulo 16 (<i>Medindo o desenvolvimento</i>: PIB, PIB per capita, PPC, IDH e Gini) e as <b>5 últimas</b>, do Capítulo 17 (<i>A desigualdade social e seus vários aspectos</i>). A próxima medida só abre quando você conferir a anterior.</p>
+    <ol>
+      <li>Leia a medida com calma (tudo aqui vem do seu livro).</li>
+      <li>Responda as 3 perguntas <b>escrevendo</b> com as suas palavras (não vale copiar o texto).</li>
+      <li>Clique em <b>Conferir</b>: aparece a resposta-modelo e uma autoavaliação Sim/Não.</li>
+      <li>Com as 12 medidas conferidas e a autoavaliação respondida, o <b>🎯 Quiz destrava</b>.</li>
+    </ol>
+    <div class="legenda"><span class="lg-c16">📏 Capítulo 16 = medir o desenvolvimento</span><span class="lg-c17">⚖️ Capítulo 17 = desigualdade social</span></div>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div id="blocos"></div>
+
+  <div class="peg">
+    <h3>⚠️ 12 Pegadinhas da Prova (não caia nelas!)</h3>
+    <ol>
+      <li><b>PIB não é bem-estar.</b> O PIB mede o tamanho da economia (lucros, salários, investimentos do governo). Ele não mostra distribuição de renda, pobreza, meio ambiente nem qualidade de vida.</li>
+      <li><b>PIB per capita é uma média.</b> Divide a riqueza como se todos recebessem igual — por isso <b>esconde a desigualdade</b> e pode "maquiar" o desenvolvimento.</li>
+      <li><b>PPC ao contrário:</b> PIB per capita <b>maior</b> que o PPC = custo de vida <b>ALTO</b>. Nos <b>Estados Unidos</b> os dois são <b>iguais</b> (a cesta usa o custo americano como referência).</li>
+      <li><b>IDH × Gini — leitura invertida!</b> Os dois vão de 0 a 1. No <b>IDH, 1 é o melhor</b>. No <b>Gini, 1 é o pior</b> (desigualdade total).</li>
+      <li><b>Os 3 parâmetros do IDH</b> são renda, longevidade e educação. O IDH <b>não</b> mede a desigualdade nem a <b>qualidade</b> da educação.</li>
+      <li><b>Longevidade</b> = expectativa de vida <b>ao nascer</b>. <b>Educação</b> = anos esperados + média de anos de estudo de quem tem <b>25 anos ou mais</b>.</li>
+      <li><b>Faixas do IDH:</b> baixo &lt; 0,550 · médio 0,550–0,699 · elevado 0,700–0,799 · muito elevado ≥ 0,800.</li>
+      <li><b>Brasil:</b> IDH 0,760 (2022), <b>elevado</b>, 89º lugar — mas <b>abaixo</b> da média da América Latina e Caribe (0,763). Gini 0,529 = <b>muito desigual</b>.</li>
+      <li><b>Gini baixo não quer dizer país rico.</b> A Etiópia (pobre) tem 0,350; o Brasil, 0,529. O Gini mede a <b>distribuição</b>, não a produção de riqueza.</li>
+      <li><b>Não troque os criadores:</b> IDH = <b>Amartya Sen e Mahbub ul Haq, 1990</b>. Gini = <b>Corrado Gini, 1912</b>. ONU = 1945.</li>
+      <li><b>Escola × universidade:</b> na Educação Básica a particular tende a ser melhor; no <b>Ensino Superior</b> a tendência se <b>inverte</b> — as melhores são <b>públicas</b>. Lei de Cotas: <b>2012</b>.</li>
+      <li><b>Terra × escola:</b> período agroexportador = acesso à <b>terra</b>; período urbano-industrial = acesso à <b>formação escolar</b>. Regiões: menor renda no <b>Norte e Nordeste</b>; mais analfabetismo no <b>Nordeste</b> (depois Norte).</li>
+    </ol>
+  </div>
+
+  <div class="cobertura">
+    <h3>🧭 Cobertura: Tópico → Medida</h3>
+    <table>
+      <thead><tr><th>Tópico da prova</th><th>Páginas (Callis Geografia 7 – L2)</th><th>Medida</th></tr></thead>
+      <tbody>
+        <tr><td>Por que medir o desenvolvimento; ONU (1945); PIB não é indicador de bem-estar</td><td>50–52</td><td>1</td></tr>
+        <tr><td>Produto Interno Bruto (PIB): o que é, como se calcula, conversão em dólares</td><td>52</td><td>2</td></tr>
+        <tr><td>PIB per capita: "por indivíduo"; falha (esconde a desigualdade, "maquiar")</td><td>53</td><td>3</td></tr>
+        <tr><td>PIB per capita PPC: poder de compra, cesta internacional, EUA como referência, limites</td><td>53–54</td><td>4</td></tr>
+        <tr><td>IDH: criadores (1990), Amartya Sen, 3 parâmetros, escala 0–1 e 4 faixas</td><td>55–56</td><td>5</td></tr>
+        <tr><td>Problemas do IDH; IDH do Brasil (0,760); IDHM (São Caetano do Sul × Melgaço)</td><td>57–58</td><td>6</td></tr>
+        <tr><td>Coeficiente de Gini: Corrado Gini (1912), leitura 0–1, Etiópia × Brasil; usar vários índices</td><td>59–60</td><td>7</td></tr>
+        <tr><td>Art. 3º da Constituição; conceito de desigualdade social; concentração de renda; impostos progressivos × regressivos</td><td>64–67</td><td>8</td></tr>
+        <tr><td>Raízes da desigualdade: período colonial, escravidão, industrialização, educação, Lei de Cotas</td><td>68–70</td><td>9</td></tr>
+        <tr><td>Desigualdades regionais: renda, analfabetismo, expectativa de vida, fatores de risco</td><td>71–73</td><td>10</td></tr>
+        <tr><td>Qualidade de vida além da renda: serviços públicos, saneamento básico, transporte coletivo</td><td>73–74</td><td>11</td></tr>
+        <tr><td>Desigualdade entre os gêneros no mercado de trabalho</td><td>75</td><td>12</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="revisar" id="revisar" style="display:none">
+    <h3>🔁 Para revisar antes da prova</h3>
+    <ul id="revisar-lista"></ul>
+  </div>
+
+  <div class="relatorio">
+    <h3>📊 Para os pais (resumo desta leitura)</h3>
+    <div id="rel-conteudo">Assim que o aprendiz for conferindo as medidas, o resumo aparece aqui.</div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Quiz</h3>
+    <p id="trilha-fim-txt">O Quiz destrava quando as 12 medidas estiverem conferidas e a autoavaliação respondida.</p>
+    <a class="btn off" id="btn-prox" href="quiz.html">🎯 Ir para o Quiz</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 📏🧵✂️ Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='alfaiataria_indices';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+
+/* ====== MEDIDAS (conteúdo do livro Callis Geografia 7 L2 — Caps 16 e 17) ====== */
+var BLOCOS = [
+ {
+  porto:"Medida 1 · Capítulo 16 · Por que medir", emoji:"🌍", u:"c16",
+  titulo:"Por que medir um país?",
+  texto:[
+   "Depois da Segunda Guerra Mundial, em <b>1945</b>, foi criada a <span class='destaque'>ONU (Organização das Nações Unidas)</span>. A partir daí, o mundo passou a querer saber se os países, ricos ou pobres, estavam <b>melhorando suas condições econômicas e sociais</b> — fatores que tinham influenciado o começo das duas guerras mundiais.",
+   "O objetivo da ONU vai além de resolver brigas entre países: ela busca manter a paz com <b>melhorias estruturais</b>, como a redução da fome, o acesso à educação, a igualdade de direitos entre as pessoas e o combate à perseguição religiosa.",
+   "Para isso é preciso <b>medir</b>: descobrir se cada país desenvolve suas potencialidades ou se continua preso à pobreza. Medir a economia virou uma necessidade — e foi assim que os <span class='destaque'>índices</span> ganharam importância: são números que permitem comparar os países.",
+   "<div class='olhar'><b>Abertura do capítulo:</b> duas fotos da mesma cidade (Cidade do México) — prédios modernos de um lado, moradias precárias do outro. O texto de abertura avisa: o PIB tem regras internacionais de cálculo, o que permite comparar países, mas <b>não pode ser tomado como indicador de bem-estar</b>, porque só capta a renda média.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Por que, depois de 1945, o mundo passou a querer medir o desenvolvimento dos países?",modelo:"Porque, com a criação da ONU, os países quiseram saber se todos estavam melhorando de vida (na economia e nas condições sociais). Problemas desse tipo ajudaram a causar as guerras, e a ONU quer manter a paz melhorando a vida das pessoas — e para isso precisa medir.",chk:["Citei a ONU (criada em 1945)?","Expliquei que era para saber se os países melhoravam na economia e na vida social (e manter a paz)?"]},
+   {tag:"apl",q:"Imagine uma cidade com prédios de luxo e, logo ao lado, casas improvisadas. Por que só a renda média dessa cidade não contaria bem essa história?",modelo:"Porque a média mistura os muito ricos com os muito pobres e dá um número 'do meio'. Quem olha só a média acha que todo mundo vive mais ou menos igual — e o contraste, a desigualdade, some.",chk:["Disse que a média mistura ricos e pobres?","Disse que ela esconde o contraste/a desigualdade?"]},
+   {tag:"apl",q:"Você vai ajudar a ONU a diminuir a fome num país. Por que seria preciso medir antes de agir? Dê um exemplo do que você mediria.",modelo:"Porque sem medir não dá para saber onde está o problema, qual é o tamanho dele nem se as ações estão funcionando. Eu mediria, por exemplo, a renda das famílias ou quantas pessoas não têm comida suficiente — e mediria de novo depois, para comparar.",chk:["Expliquei que medir mostra o problema e permite comparar?","Dei um exemplo concreto do que medir?"]}
+  ]
+ },
+ {
+  porto:"Medida 2 · Capítulo 16 · PIB", emoji:"🏭", u:"c16",
+  titulo:"PIB: a fita que mede a riqueza",
+  texto:[
+   "Desde antes de 1945, a forma mais usada para medir o desenvolvimento era a mesma usada para medir o crescimento da economia de um país: o <span class='destaque'>Produto Interno Bruto (PIB)</span>.",
+   "O cálculo do PIB é feito com base na <b>riqueza gerada pela produção e pela comercialização de todos os setores da economia</b>. Entram na conta os <b>lucros das empresas</b>, os <b>salários pagos aos trabalhadores</b> do país e os <b>investimentos feitos pelo governo</b>.",
+   "Em geral o PIB é calculado para o período de <b>um ano</b> (mas pode ser para mais ou menos tempo). Para comparar países, é comum converter os valores para <b>dólares</b>. O livro traz um gráfico com os <b>países de maior economia do mundo</b> em 2024.",
+   "A grande vantagem do PIB é que existem <b>padrões internacionais</b> para calculá-lo, então dá para comparar países diferentes. O problema — que você vai ver nas próximas medidas — é que ele mede o <b>tamanho da economia</b>, e não como as pessoas vivem.",
+   "<div class='olhar'><b>Pense na fita métrica:</b> o PIB mede a 'altura' da economia. Mas saber a altura de alguém não diz se a roupa serve bem nele.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Com as suas palavras: o que o PIB mede e o que entra no cálculo dele?",modelo:"Ele mede a riqueza que o país produz e vende em todos os setores da economia, geralmente em um ano. Entram os lucros das empresas, os salários dos trabalhadores e os investimentos do governo.",chk:["Disse que mede a riqueza produzida/vendida pelo país?","Citei pelo menos 2 itens do cálculo (lucros, salários, investimentos do governo)?"]},
+   {tag:"apl",q:"Uma manchete diz: 'País X tem um dos maiores PIBs do mundo, então lá todo mundo vive bem'. Explique por que essa conclusão está apressada.",modelo:"Porque o PIB mede o tamanho da economia, não o bem-estar. O país pode produzir muita riqueza e ainda ter muita gente pobre, já que o PIB não mostra como a riqueza é dividida nem como estão a saúde e a educação.",chk:["Disse que o PIB mede a economia, e não o bem-estar?","Citei que ele não mostra a divisão da riqueza (ou saúde/educação)?"]},
+   {tag:"apl",q:"Por que os países convertem o PIB para dólares antes de comparar? Explique como se fosse para um colega do 5º ano.",modelo:"Porque cada país tem a sua própria moeda. Comparar PIBs em moedas diferentes seria como comparar alturas medidas em metros e em palmos. Passando tudo para a mesma moeda, o dólar, a comparação fica justa.",chk:["Disse que cada país tem uma moeda diferente?","Disse que usar a mesma moeda permite comparar?"]}
+  ]
+ },
+ {
+  porto:"Medida 3 · Capítulo 16 · PIB per capita", emoji:"👕", u:"c16",
+  titulo:"PIB per capita: a medida média que não serve em ninguém",
+  texto:[
+   "A partir do PIB foi criado o <span class='destaque'>PIB per capita</span>: o PIB de um período <b>dividido pelo número de habitantes</b>. <b>Per capita</b> é uma expressão em latim que quer dizer <b>'por indivíduo'</b> — é como dizer 'PIB por cabeça'. Ele virou uma referência mundial de crescimento econômico.",
+   "Mas o PIB per capita tem uma <b>falha importante</b>: ele reparte toda a riqueza pelo total da população, como se cada pessoa recebesse o mesmo pedaço. Só que a riqueza <b>não é distribuída igualmente</b>: o dono de uma grande empresa pode ter lucros bilionários num ano, enquanto um trabalhador ganha apenas o salário mínimo.",
+   "Por isso o PIB per capita <b>não mostra a desigualdade</b>, esconde problemas sociais profundos e pode dar uma ideia irreal do desenvolvimento. O livro alerta que ele é muitas vezes usado por governos ou instituições para <b>'maquiar'</b> o desenvolvimento, mostrando um crescimento que não melhora a vida da população.",
+   "<div class='olhar'><b>Moral do ateliê:</b> uma roupa feita com a medida média de uma turma inteira não serve direito em ninguém. O PIB per capita é essa medida média.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Explique o que é o PIB per capita e qual é a grande falha dele.",modelo:"É o PIB dividido pelo número de habitantes, a riqueza 'por pessoa'. A falha é que ele divide tudo como se fosse igual para todos, mas a riqueza não é dividida igualmente — então esconde a desigualdade.",chk:["Disse que é o PIB dividido pela população?","Disse que ele não mostra (esconde) a desigualdade?"]},
+   {tag:"apl",q:"Numa rua moram 5 famílias. Uma ganha R$ 46 000 por mês e as outras quatro ganham R$ 1 000 cada. Calcule a renda média por família e diga se esse número representa bem a rua.",modelo:"A média é R$ 10 000 por família (46 000 + 4 000 = 50 000; 50 000 ÷ 5 = 10 000). Esse número não representa a rua: quatro famílias ganham só R$ 1 000. A média esconde a desigualdade, igualzinho ao PIB per capita.",chk:["Fiz a conta e cheguei a R$ 10 000?","Concluí que a média não representa a maioria / esconde a desigualdade?"]},
+   {tag:"apl",q:"O que o livro quer dizer quando fala que o PIB per capita pode ser usado para 'maquiar' o desenvolvimento? Dê um exemplo inventado.",modelo:"Quer dizer que o número pode subir e o governo anunciar que o país melhorou, mesmo que a vida da maioria continue igual. Exemplo: a riqueza nova ficou só com os donos de grandes empresas; a média subiu e o governo diz que 'todos estão melhor'.",chk:["Disse que o número pode mostrar um crescimento que não melhora a vida da população?","Dei um exemplo?"]}
+  ]
+ },
+ {
+  porto:"Medida 4 · Capítulo 16 · PPC", emoji:"🧺", u:"c16",
+  titulo:"PIB per capita PPC: o preço da cesta",
+  texto:[
+   "Outro problema do PIB per capita é o <b>poder de compra</b>, que muda de país para país: com a mesma quantia de dinheiro não se compram os mesmos produtos em todo lugar, porque os preços são diferentes.",
+   "Para diminuir esse problema criou-se o <span class='destaque'>PIB per capita PPC (Paridade de Poder de Compra)</span>: o valor do PIB per capita em dólares é <b>corrigido de acordo com o custo de vida médio</b> do país.",
+   "Como funciona: montou-se uma espécie de <b>'cesta internacional'</b> com alguns produtos básicos, e compara-se quanto ela custa em cada país. Como a moeda padrão é o dólar, a referência é o custo dessa cesta nos <b>Estados Unidos</b> — por isso, lá, o PIB per capita e o PIB per capita PPC são <b>iguais</b>.",
+   "Regra de leitura: se um país tem <b>PIB per capita maior do que o PIB per capita PPC</b>, isso indica <b>custo de vida elevado</b> — o poder de compra da população é menor do que o PIB per capita faz parecer.",
+   "Mesmo assim, o PPC <b>não serve como medida de desenvolvimento</b>: não considera aspectos sociais importantes, como <b>saúde e educação</b>, e continua <b>desprezando a desigualdade social</b>."
+  ],
+  perguntas:[
+   {tag:"conc",q:"Por que foi criado o PIB per capita PPC?",modelo:"Porque o mesmo dinheiro compra coisas diferentes em cada país, já que os preços mudam. O PPC corrige o PIB per capita pelo custo de vida (comparando o preço de uma cesta de produtos básicos) para mostrar o poder de compra.",chk:["Falei do poder de compra / preços diferentes entre países?","Falei que ele corrige pelo custo de vida (cesta de produtos)?"]},
+   {tag:"apl",q:"O país Alfa tem PIB per capita de 40 mil dólares e PIB per capita PPC de 30 mil dólares. O que isso indica sobre a vida lá? Justifique.",modelo:"Indica que o custo de vida em Alfa é alto: como o PIB per capita é maior que o PPC, o dinheiro das pessoas compra menos do que os 40 mil fazem parecer.",chk:["Disse que o custo de vida é elevado?","Justifiquei com PIB per capita maior que o PPC (poder de compra menor)?"]},
+   {tag:"apl",q:"Um colega disse: 'Com o PPC, finalmente temos a medida perfeita do desenvolvimento'. Corrija o colega usando o livro.",modelo:"Não é perfeita. O PPC melhora a comparação de preços, mas continua sem medir saúde e educação e continua escondendo a desigualdade, porque ainda divide a riqueza como se fosse igual para todos.",chk:["Disse que o PPC não considera saúde e/ou educação?","Disse que ele continua desprezando a desigualdade?"]}
+  ]
+ },
+ {
+  porto:"Medida 5 · Capítulo 16 · IDH", emoji:"📐", u:"c16",
+  titulo:"IDH: três medidas de uma vez",
+  texto:[
+   "Em <b>1990</b>, os economistas <b>Amartya Sen</b> (da Índia) e <b>Mahbub ul Haq</b> (do Paquistão) criaram o <span class='destaque'>Índice de Desenvolvimento Humano (IDH)</span>, para avaliar os aspectos <b>sociais e econômicos</b> de um país considerando o <b>bem-estar</b> da população. A <b>ONU adotou</b> esse índice, que mede mais do que o crescimento econômico.",
+   "Amartya Sen defende que, para um país se desenvolver, o cidadão precisa ter <b>condições de fazer escolhas e exercer sua cidadania</b>: estar bem alimentado, ter boa saúde e liberdade para escolher sua forma de vida.",
+   "Depois de algumas revisões, hoje o IDH é calculado com <b>três parâmetros</b>:",
+   "<ul><li><span class='destaque'>Renda</span> — medida pelo <b>Rendimento Nacional Bruto (RNB) per capita PPC</b>: o PIB, mais o dinheiro que entra de empresas nacionais que atuam no exterior, menos o que empresas estrangeiras mandam para fora, dividido pela população e ajustado ao poder de compra.</li><li><span class='destaque'>Longevidade</span> — medida pela <b>expectativa de vida ao nascer</b> (quanto se espera que uma pessoa viva). Expectativa alta revela qualidade de vida e bom acesso à saúde.</li><li><span class='destaque'>Educação</span> — os <b>anos de escolaridade esperados</b> e a <b>média de anos de estudo</b> das pessoas com <b>25 anos ou mais</b>.</li></ul>",
+   "O IDH vai de <b>0 a 1</b> (0 é o pior e 1 o melhor). A ONU divide os países em 4 grupos: <b>baixo</b> (menor que 0,550), <b>médio</b> (0,550 a 0,699), <b>elevado</b> (0,700 a 0,799) e <b>muito elevado</b> (0,800 a 1).",
+   "<div class='olhar'><b>Ranking citado no livro (ONU, 2023/24):</b> no topo, Suíça, Noruega e Islândia. O Brasil ficou na posição 89, no grupo de desenvolvimento alto.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Quais são os três parâmetros do IDH e como cada um é medido?",modelo:"Renda (pelo RNB per capita PPC), longevidade (pela expectativa de vida ao nascer) e educação (anos de escola esperados e média de anos de estudo de quem tem 25 anos ou mais).",chk:["Citei renda, longevidade e educação?","Disse como pelo menos 2 deles são medidos?"]},
+   {tag:"apl",q:"Classifique estes países inventados segundo as faixas da ONU: Ateliândia (IDH 0,812), Botãozópolis (0,640), Linhalândia (0,705) e Dedalópolis (0,498).",modelo:"Ateliândia (0,812): muito elevado. Botãozópolis (0,640): médio. Linhalândia (0,705): elevado. Dedalópolis (0,498): baixo.",chk:["Acertei pelo menos 3 das 4 classificações?","Usei os limites certos (0,550 / 0,700 / 0,800)?"]},
+   {tag:"apl",q:"Por que podemos dizer que o IDH é uma 'fita métrica' melhor que o PIB para medir desenvolvimento? Explique para um colega.",modelo:"Porque o PIB só mede a economia, e o IDH junta três medidas: além da renda, olha a saúde (expectativa de vida) e a educação. Assim mostra melhor o bem-estar das pessoas, e não só quanto o país produz.",chk:["Disse que o PIB mede só a economia/riqueza?","Disse que o IDH inclui saúde (longevidade) e educação?"]}
+  ]
+ },
+ {
+  porto:"Medida 6 · Capítulo 16 · IDH e IDHM", emoji:"🪡", u:"c16",
+  titulo:"Os furos do IDH e o IDH do Brasil",
+  texto:[
+   "O IDH também tem <b>lacunas</b>. A principal: ele <b>não consegue medir a qualidade da educação</b>. Contar anos de estudo não mostra se o ensino é bom — um governo pode colocar e manter as crianças em escolas que não oferecem o necessário, e mesmo assim os anos de estudo aumentam.",
+   "Na <b>saúde</b>, os números têm mais chance de mostrar a realidade: aumentar a longevidade exige melhorar de verdade as condições de vida (água e esgoto tratados, bom atendimento médico, remédios, moradia digna). Por isso vários países aumentaram o IDH nos anos 1990, mas <b>travaram</b> enquanto não resolveram seus problemas sociais.",
+   "Outro furo: a parte da renda usa o <b>PIB per capita PPC</b>, que <b>não mostra as desigualdades</b> — um problema ainda maior em países subdesenvolvidos e industrializados. Uma vantagem: o IDH pode ser medido em <b>qualquer localidade</b> (município, estado, região), o que ajuda os governos a direcionar investimentos e diminuir as desigualdades regionais.",
+   "<b>O IDH do Brasil</b> é considerado <span class='destaque'>elevado</span>: era de <b>0,760 em 2022</b>, na <b>89ª posição</b> mundial, um pouco <b>abaixo da média da América Latina e Caribe (0,763)</b>. Está longe dos mais desenvolvidos (a Suíça tinha 0,952) e também longe dos menores índices (o Sudão do Sul, na África, tinha 0,381).",
+   "Como o Brasil é um país <b>continental</b> e muito populoso, é importante usar o <span class='destaque'>IDHM — Índice de Desenvolvimento Humano Municipal</span>. Segundo o <b>PNUD</b> (órgão ligado à ONU), em 2010 o melhor IDHM era o de <b>São Caetano do Sul (SP), 0,862</b>, e o pior, o de <b>Melgaço (PA), 0,418</b>."
+  ],
+  perguntas:[
+   {tag:"conc",q:"Qual é a principal lacuna do IDH na parte da educação?",modelo:"Ele conta anos de estudo, mas não mede a qualidade do ensino. As crianças podem ficar muitos anos na escola e, mesmo assim, as escolas serem fracas.",chk:["Disse que o IDH não mede a qualidade da educação?","Expliquei que mais anos de estudo não garantem ensino bom?"]},
+   {tag:"apl",q:"O Brasil tinha IDH 0,760, mas São Caetano do Sul tinha IDHM 0,862 e Melgaço, 0,418. O que esses números mostram e por que o IDHM é útil?",modelo:"Mostram que dentro do Brasil há lugares muito desenvolvidos e outros pouco desenvolvidos; o número do país é uma média que esconde essas diferenças. O IDHM é útil porque mostra cada município e ajuda o governo a saber onde investir.",chk:["Disse que há grande diferença entre os municípios?","Disse que o IDHM ajuda a enxergar isso / direcionar investimentos?"]},
+   {tag:"apl",q:"Um governo matriculou todas as crianças, mas as escolas não têm professores suficientes nem material. O IDH desse país pode subir? Isso prova que a educação melhorou? Explique.",modelo:"Pode subir, porque aumentam os anos de estudo. Mas não prova que a educação melhorou: o IDH não mede a qualidade, e as crianças podem estar na escola sem aprender o necessário.",chk:["Disse que o IDH pode subir (mais anos de estudo)?","Disse que isso não prova melhora na qualidade?"]}
+  ]
+ },
+ {
+  porto:"Medida 7 · Capítulo 16 · Gini", emoji:"✂️", u:"c16",
+  titulo:"Coeficiente de Gini: como a riqueza é repartida",
+  texto:[
+   "Em <b>1912</b>, o estatístico italiano <b>Corrado Gini</b> criou um índice que mede a <b>desigualdade na distribuição da riqueza</b> de um país: o <span class='destaque'>coeficiente (ou índice) de Gini</span>. O cálculo compara a renda de cada pessoa com a renda total da população.",
+   "O Gini também vai de <b>0 a 1</b>, mas atenção: a leitura é <b>ao contrário</b> da do IDH. <b>Quanto mais perto de 0, mais igualitária</b> é a distribuição da renda; <b>quanto mais perto de 1, mais desigual</b>. Um Gini igual a 1 seria a desigualdade total: uma única pessoa com toda a renda e as outras sem nada.",
+   "O Gini mostra algo que o IDH não consegue mostrar. E traz uma surpresa: países bem <b>mais pobres</b> que o Brasil podem ter Gini <b>menor</b>. Isso acontece porque ele <b>não mede a produção de riqueza, e sim a distribuição</b>. Num país muito pobre a renda pode estar pouco concentrada, mas o bem-estar ser ruim, porque a maioria vive em situação precária.",
+   "Exemplos do livro: a <b>Etiópia</b>, na África, historicamente empobrecida e com problemas sociais crônicos, tem Gini de <b>0,350</b> (desigualdade pequena). O <b>Brasil</b>, com IDH e PIB per capita elevados, tem <b>0,529</b> — muito alto. O Brasil já teve o pior Gini do mundo e, em <b>2017</b>, era o <b>10º país mais desigual</b> do planeta.",
+   "<div class='olhar'><b>Conclusão do capítulo:</b> o ideal é usar <b>todos os dados e índices juntos</b>. Olhando o IDH e o Gini ao mesmo tempo, por exemplo, dá para descobrir que uma renda per capita alta pode estar nas mãos de uma pequena parcela da população.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"O que o coeficiente de Gini mede e como se lê o resultado?",modelo:"Mede a desigualdade na distribuição da renda. Vai de 0 a 1: perto de 0, a renda está mais bem repartida (mais igualdade); perto de 1, mais concentrada (mais desigualdade).",chk:["Disse que mede a distribuição/desigualdade da renda?","Expliquei que perto de 0 = mais igual e perto de 1 = mais desigual?"]},
+   {tag:"apl",q:"O país Retalho tem Gini 0,62 e o país Bainha tem Gini 0,28. Qual é mais desigual? Dá para afirmar qual é mais rico só com esse dado? Por quê?",modelo:"Retalho é mais desigual, porque 0,62 está mais perto de 1. Não dá para saber qual é mais rico: o Gini mede só como a renda é repartida, não quanto o país produz.",chk:["Indiquei Retalho como o mais desigual?","Disse que o Gini não mede riqueza/produção?"]},
+   {tag:"apl",q:"Explique, como se fosse para alguém da sua família, por que a Etiópia pode ter Gini menor que o Brasil mesmo sendo bem mais pobre.",modelo:"Porque o Gini olha como a renda está dividida, e não o tamanho dela. Na Etiópia quase todos têm pouco, então a diferença entre as pessoas é menor. No Brasil há muito mais riqueza, mas ela fica concentrada com poucos, então a diferença é grande.",chk:["Disse que o Gini mede a divisão, e não a quantidade de riqueza?","Expliquei a diferença entre os dois países (todos com pouco × riqueza concentrada)?"]}
+  ]
+ },
+ {
+  porto:"Medida 8 · Capítulo 17 · Desigualdade social", emoji:"⚖️", u:"c17",
+  titulo:"Desigualdade social: o que é e quanto pesa",
+  texto:[
+   "O capítulo 17 começa com o <b>artigo 3º da Constituição Federal de 1988</b>, que lista os objetivos fundamentais do Brasil. Entre eles: construir uma sociedade <b>livre, justa e solidária</b>; <b>erradicar a pobreza e a marginalização e reduzir as desigualdades sociais e regionais</b>; e promover o bem de todos, <b>sem preconceitos</b> de origem, raça, sexo, cor, idade ou qualquer outra discriminação.",
+   "A <span class='destaque'>desigualdade social</span> são os <b>contrastes</b> que percebemos numa sociedade. Ela ocorre quando o acesso a <b>alimentação adequada, moradia digna, educação e atendimento médico de qualidade</b>, entre outros, <b>não é garantido da mesma forma para todos</b>. Existe no mundo todo, mas em níveis diferentes — e o Brasil tem <b>uma das maiores taxas</b> de desigualdade social.",
+   "Pelo PIB, o Brasil está entre as <b>principais economias do mundo</b>. Mas isso diz pouco sobre as condições de vida: como a população é grande, o PIB per capita em 2024 era de aproximadamente <b>10 300 dólares por ano</b>, o que deixava o país na <b>82ª posição</b>. E a renda é muito concentrada: em <b>2022, os 5% mais ricos detinham 39,9% da renda nacional</b>.",
+   "No mundo, <b>menos de 10% da população controla grande parte da renda</b> produzida no planeta, e essa situação é pior nas regiões menos desenvolvidas.",
+   "<div class='olhar'><b>Impostos também contam:</b> um sistema de impostos é <b>progressivo</b> quando quem recebe mais paga mais; é <b>regressivo</b> quando a carga pesa mais sobre os mais pobres. Um estudo citado no livro mostra que, no Brasil, os 0,05% mais ricos pagavam em média só 7% de imposto, enquanto a faixa intermediária pagava 12% — <b>baixa progressividade</b>, que ajuda a concentrar a renda. (<b>Alíquota</b> é o percentual usado no cálculo do imposto.)</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Com as suas palavras, o que é desigualdade social?",modelo:"É quando as pessoas de uma sociedade não têm o mesmo acesso a coisas básicas, como comida adequada, moradia digna, educação e saúde de qualidade. Uns têm muito e outros, pouco.",chk:["Falei de acesso que não é garantido igual para todos?","Citei pelo menos 2 exemplos (alimentação, moradia, educação, saúde)?"]},
+   {tag:"apl",q:"Em 2022, os 5% mais ricos do Brasil tinham 39,9% da renda. Imagine 100 pessoas dividindo 100 pães desse jeito: quantas ficam com quase 40 pães e quantos pães sobram para as outras? O que isso mostra?",modelo:"5 pessoas ficariam com quase 40 pães, e as outras 95 dividiriam cerca de 60. Isso mostra concentração de renda: poucos ficam com muito e a maioria fica com pouco.",chk:["Cheguei a 5 pessoas com ~40 pães e 95 pessoas com ~60?","Concluí que isso é concentração de renda / desigualdade?"]},
+   {tag:"apl",q:"O Brasil está entre as maiores economias do mundo, mas era o 82º em PIB per capita. Explique como as duas coisas podem ser verdade ao mesmo tempo.",modelo:"O PIB total é grande porque o país produz muito. Mas a população também é enorme: dividindo a riqueza pelo número de habitantes, o valor por pessoa fica menor, e o país cai no ranking. E ainda há a concentração de renda.",chk:["Disse que o PIB total é grande (o país produz muito)?","Disse que a população grande diminui o valor por pessoa?"]}
+  ]
+ },
+ {
+  porto:"Medida 9 · Capítulo 17 · Raízes", emoji:"🌱", u:"c17",
+  titulo:"As raízes: da terra à escola",
+  texto:[
+   "A desigualdade no Brasil tem <b>raízes na formação da nossa sociedade</b>. No <span class='destaque'>período colonial</span>, a <b>concentração das terras pela elite latifundiária</b> representava poder político e econômico, porque quem tinha a terra controlava a produção da maior parte da riqueza. Séculos se passaram e esse poder continuou com essa mesma elite.",
+   "A força de trabalho da colonização era principalmente <b>escrava</b>, e mesmo os poucos trabalhadores livres não tinham acesso à terra. <b>Depois da abolição da escravatura</b>, essa condição <b>não mudou de maneira significativa</b>: continuou a grande distância entre os mais ricos e os mais pobres.",
+   "No <b>século XX</b>, com a <b>industrialização e a urbanização</b>, mudou o caminho para a renda: antes era a <b>propriedade da terra</b>; hoje, a <span class='destaque'>educação e a preparação para o mercado de trabalho</span> são fundamentais.",
+   "Só que um ensino público de qualidade para todos nunca foi prioridade absoluta da maioria dos governantes. <b>Até os anos 1970</b>, as escolas públicas eram, em geral, <b>boas, mas acessíveis a poucos</b>. Depois, as <b>vagas aumentaram, mas a qualidade não acompanhou</b>. Para a classe média e a elite surgiram as <b>escolas particulares</b>, e o ensino ficou dividido conforme a condição social.",
+   "No <b>Ensino Superior, a tendência se inverte</b>: as melhores instituições são <b>públicas</b>, e historicamente suas vagas eram ocupadas por quem estudou na educação privada. Em <b>2012</b>, a <span class='destaque'>Lei de Cotas</span> passou a garantir vagas para alunos de escolas públicas, pretos, pardos e indígenas — uma política pública para diminuir a desigualdade e democratizar o acesso ao Ensino Superior.",
+   "<div class='olhar'><b>Frase-chave da prova:</b> no período <b>agroexportador</b>, a dificuldade de acesso à <b>terra</b> mantinha a desigualdade; no período <b>urbano-industrial</b>, é a dificuldade de acesso à <b>formação escolar</b>. Mesmo com a modernização, as desigualdades continuaram sendo reforçadas.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Qual fator mantinha a desigualdade no período agroexportador e qual a mantém no período urbano-industrial?",modelo:"No agroexportador era a dificuldade de ter terra (as terras ficavam com a elite latifundiária). No urbano-industrial é a dificuldade de conseguir uma boa formação escolar.",chk:["Citei a terra no período agroexportador?","Citei a educação / formação escolar no urbano-industrial?"]},
+   {tag:"apl",q:"Explique a 'contradição' do ensino no Brasil: por que na Educação Básica a escola particular costuma ser melhor, mas na universidade a pública é a melhor? Quem acabava ficando com as vagas?",modelo:"Na Educação Básica, as vagas públicas cresceram sem a qualidade acompanhar, e quem pode pagar vai para a particular. Na universidade é o contrário: as melhores são públicas. Como quem estudou em escola particular chegava mais preparado, ficava com a maioria dessas vagas.",chk:["Disse que na Educação Básica a pública cresceu sem qualidade (particular melhor)?","Disse que na universidade a pública é melhor e as vagas iam para alunos de escola particular?"]},
+   {tag:"apl",q:"Para que serve a Lei de Cotas (2012)? Explique ligando com a contradição da pergunta anterior.",modelo:"Ela reserva vagas nas universidades públicas para alunos de escola pública, pretos, pardos e indígenas. Assim, quem não teve uma Educação Básica tão boa também consegue entrar nas melhores universidades, o que ajuda a diminuir a desigualdade.",chk:["Disse para quem as vagas são reservadas?","Liguei com diminuir a desigualdade / democratizar o acesso?"]}
+  ]
+ },
+ {
+  porto:"Medida 10 · Capítulo 17 · Regiões", emoji:"🗺️", u:"c17",
+  titulo:"Desigualdades regionais",
+  texto:[
+   "No Brasil, as desigualdades também <b>variam de região para região</b>. Comparando renda, educação e expectativa de vida, aparece uma grande diferença entre as unidades federativas e as regiões do país.",
+   "<b>Renda:</b> o rendimento mensal médio por pessoa é <b>menor no Norte e no Nordeste</b> e <b>maior no Centro-Oeste, no Sudeste e no Sul</b>.",
+   "<b>Educação:</b> as maiores taxas de <span class='destaque'>analfabetismo</span> estão no <b>Nordeste</b>, seguido do <b>Norte</b>; as menores, no <b>Sul e no Sudeste</b>. O nível de educação é um fator importante para avaliar o desenvolvimento econômico e social de uma população.",
+   "<b>Expectativa de vida ao nascer:</b> está diretamente ligada ao acesso a serviços de saúde de qualidade e também é desigual entre os estados. Ela tende a ser <b>maior onde a renda e a escolaridade são maiores</b>.",
+   "Há ainda os <span class='destaque'>fatores de risco do entorno</span>, que diminuem a expectativa de vida de quem convive com eles: a <b>violência urbana</b>, as atividades ligadas ao <b>narcotráfico</b> e as <b>mortes no trânsito</b> (que também entram no cálculo).",
+   "<div class='olhar'><b>Síntese do livro:</b> a desigualdade no nosso país <b>não é homogênea</b> — há desigualdade entre as <b>regiões</b>.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Quais regiões têm os menores rendimentos médios por pessoa e quais têm os maiores?",modelo:"Os menores estão no Norte e no Nordeste; os maiores, no Centro-Oeste, no Sudeste e no Sul.",chk:["Citei Norte e Nordeste como os menores?","Citei Centro-Oeste, Sudeste e Sul como os maiores?"]},
+   {tag:"apl",q:"Um estado tem renda alta e muita gente com muitos anos de estudo. Outro tem renda baixa e muito analfabetismo. Em qual você espera maior expectativa de vida? Por quê, segundo o livro?",modelo:"No primeiro. O livro mostra que a expectativa de vida tende a ser maior onde a renda e a escolaridade são maiores, porque ali há mais acesso a serviços de saúde de qualidade.",chk:["Escolhi o estado de renda e escolaridade mais altas?","Justifiquei com a relação renda–escolaridade–saúde do livro?"]},
+   {tag:"apl",q:"Dois estados têm renda média parecida, mas um tem muita violência urbana e muitas mortes no trânsito. O que pode acontecer com a expectativa de vida dele? Explique.",modelo:"Ela tende a ser menor, porque violência, narcotráfico e mortes no trânsito são fatores de risco do entorno que diminuem a expectativa de vida, mesmo com renda parecida.",chk:["Disse que a expectativa de vida tende a ser menor?","Citei os fatores de risco (violência, trânsito, narcotráfico)?"]}
+  ]
+ },
+ {
+  porto:"Medida 11 · Capítulo 17 · Qualidade de vida", emoji:"🚰", u:"c17",
+  titulo:"Qualidade de vida além da renda",
+  texto:[
+   "Qualidade de vida e desigualdade costumam ser medidas pela <b>renda</b>, porque quem tem mais dinheiro, em geral, vive melhor. Mas existem <b>outros fatores</b> que podem <b>amenizar ou agravar</b> a qualidade de vida de uma população.",
+   "Se um país tem <b>boas escolas e bons hospitais públicos</b>, a diferença de renda entre ricos e pobres <b>perde parte da importância</b>: quem não tem renda continua podendo estudar e cuidar da saúde.",
+   "O <span class='destaque'>saneamento básico</span> — <b>coleta de lixo, tratamento de esgoto e fornecimento de água tratada</b> — normalmente depende dos órgãos públicos. Se o poder público garante esses serviços para todos, a qualidade de vida dos mais pobres aumenta bastante e a <b>expectativa de vida sobe</b>. Um levantamento citado no livro: <b>84,2%</b> da população tem acesso à rede de água tratada; na área urbana, o <b>Sul</b> tem o maior atendimento (98,9%) e o <b>Norte</b>, o menor (72,2%).",
+   "O <span class='destaque'>transporte coletivo</span> também reflete a desigualdade: quando é <b>eficiente, confortável e barato</b>, garante boa mobilidade às pessoas de baixa renda e facilita o acesso ao trabalho, à educação e às áreas de cultura e lazer da cidade.",
+   "Quando esses serviços <b>não são garantidos</b> — escolas e hospitais públicos muito piores que os privados, saneamento só nos melhores bairros, deslocamento rápido só para quem tem transporte próprio —, a <b>desigualdade de renda é profundamente agravada</b>."
+  ],
+  perguntas:[
+   {tag:"conc",q:"Cite três fatores, além da renda, que interferem na qualidade de vida de uma população.",modelo:"Escolas e hospitais públicos de qualidade, saneamento básico (água tratada, esgoto e coleta de lixo) e transporte coletivo eficiente e barato.",chk:["Citei pelo menos 3 fatores do livro?","Nenhum dos fatores citados foi a própria renda?"]},
+   {tag:"apl",q:"Duas cidades têm a mesma diferença de renda entre ricos e pobres. Na cidade A, o hospital e a escola públicos são ótimos; na B, são muito ruins. Em qual a desigualdade pesa mais na vida dos pobres? Por quê?",modelo:"Na cidade B. Na A, mesmo sem dinheiro, as pessoas estudam e cuidam da saúde sem pagar, então a diferença de renda perde importância. Na B, quem é pobre fica sem escola e sem saúde de qualidade, e a desigualdade é agravada.",chk:["Escolhi a cidade B?","Expliquei que serviços públicos bons amenizam e ruins agravam a desigualdade?"]},
+   {tag:"apl",q:"Você é prefeito(a) e só pode fazer uma obra: rede de esgoto nos bairros mais pobres ou uma nova ponte para carros no bairro mais rico. Qual escolhe para diminuir a desigualdade? Justifique com o livro.",modelo:"A rede de esgoto nos bairros pobres. O livro mostra que garantir saneamento para todos aumenta muito a qualidade de vida dos mais pobres e eleva a expectativa de vida; a ponte ajudaria sobretudo quem já tem transporte próprio.",chk:["Escolhi o saneamento (ou justifiquei bem a outra escolha)?","Usei a ideia do livro (saneamento melhora a vida / expectativa de vida dos mais pobres)?"]}
+  ]
+ },
+ {
+  porto:"Medida 12 · Capítulo 17 · Gênero", emoji:"👩‍💼", u:"c17",
+  titulo:"Desigualdade entre os gêneros",
+  texto:[
+   "Outra forma muito comum de desigualdade social, no Brasil e em muitos outros países, é a <span class='destaque'>desigualdade entre os gêneros</span>. De maneira geral, as mulheres encontram <b>mais dificuldades para entrar no mercado de trabalho</b> e, em muitos casos, <b>recebem salários menores do que os homens que desempenham a mesma função</b>.",
+   "Além de revelar um <b>preconceito profundo e enraizado</b>, com <b>origens históricas na sociedade patriarcal</b>, essa situação dificulta que as mulheres assumam papéis sociais de maior protagonismo ou sejam as provedoras econômicas de suas famílias.",
+   "O livro traz um gráfico do Ministério do Trabalho e Emprego (relatório de 2024): as <b>mulheres recebem 19,4% a menos que os homens</b>. Mesmo com muitos avanços conquistados, essa diferença é ainda mais grave nos <b>cargos de liderança</b>.",
+   "<div class='olhar'><b>Ligue com o capítulo 16:</b> o livro mostra gráficos do IDHM separados por sexo e por cor (2012-2021). Separar os índices por grupos é uma forma de enxergar desigualdades que a média esconde.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Quais são as duas formas de desigualdade de gênero no trabalho citadas pelo livro?",modelo:"As mulheres têm mais dificuldade para entrar no mercado de trabalho e, muitas vezes, recebem salários menores que os homens na mesma função (a diferença é ainda maior nos cargos de liderança).",chk:["Citei a dificuldade de entrar no mercado de trabalho?","Citei o salário menor na mesma função?"]},
+   {tag:"apl",q:"Uma empresa paga R$ 5 000 a um homem e R$ 4 000 a uma mulher que fazem exatamente o mesmo trabalho. Que tipo de desigualdade é essa e de onde ela vem, segundo o livro?",modelo:"É desigualdade de gênero (salário menor para a mulher na mesma função). Segundo o livro, vem de um preconceito profundo, com origem histórica na sociedade patriarcal.",chk:["Identifiquei como desigualdade de gênero?","Citei a origem na sociedade patriarcal / preconceito histórico?"]},
+   {tag:"apl",q:"QUESTÃO INVERTIDA: crie a PERGUNTA para esta resposta — 'A desigualdade de gênero afeta negativamente todas as mulheres, prejudicando sua vida tanto no aspecto profissional como pessoal.'",modelo:"Exemplos de pergunta: 'Como a desigualdade de gênero afeta a vida das mulheres?' ou 'Quem é prejudicado pela desigualdade de gênero e em quais aspectos da vida?'",chk:["Escrevi uma pergunta (com ponto de interrogação)?","A minha pergunta combina com a resposta dada?"]}
+  ]
+ }
+];
+
+/* ====== ESTADO E PERSISTÊNCIA ====== */
+var CHAVE=KIT+'_leitura_v1';
+var mem={};
+var estado=carregar();
+
+function carregar(){
+  try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s); }catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); }
+  return {blocos:{}};
+}
+function calcProgresso(){
+  var conf=0, chkPend=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estado.blocos[i]; if(!b||!b.conferido) return; conf++;
+    bloco.perguntas.forEach(function(p,j){ var ep=(b.perguntas&&b.perguntas[j])||{chk:{}}; p.chk.forEach(function(pt,k){ if(!ep.chk||!ep.chk[k]) chkPend++; }); });
+  });
+  estado.progresso={conferidos:conf,total:BLOCOS.length,chkPendentes:chkPend};
+  if(conf===BLOCOS.length && chkPend===0){ if(!estado.concluido){ estado.concluido=true; estado.concluidoEm=new Date().toISOString(); } }
+  return estado.progresso;
+}
+function salvar(){
+  calcProgresso();
+  var s=JSON.stringify(estado);
+  try{ localStorage.setItem(CHAVE,s); }catch(e){ mem[CHAVE]=s; }
+  var d=new Date();
+  document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR');
+  atualizarTrilhaFim();
+}
+function atualizarTrilhaFim(){
+  var p=estado.progresso||calcProgresso();
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox');
+  var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){
+    h3.textContent='✅ Leitura concluída — Quiz destravado!';
+    txt.textContent=estado.concluido?'Você conferiu as 12 medidas e respondeu a autoavaliação. Agora teste o que aprendeu.':'Trilha liberada pelos pais.';
+    btn.classList.remove('off');
+  } else {
+    h3.textContent='🔒 Próxima etapa: Quiz';
+    var faltam=p.total-p.conferidos;
+    txt.textContent=faltam>0 ? 'Destrava quando você conferir as '+p.total+' medidas (faltam '+faltam+').' : 'Falta responder a autoavaliação Sim/Não de '+p.chkPendentes+' ponto(s) para destravar.';
+    btn.classList.add('off');
+  }
+  marcarNav();
+}
+function estBloco(i){ if(!estado.blocos[i]) estado.blocos[i]={aberto:i===0,conferido:false,perguntas:{}}; return estado.blocos[i]; }
+function estPerg(i,j){ var b=estBloco(i); if(!b.perguntas[j]) b.perguntas[j]={resp:'',warned:false,red:false,tentou:'',chk:{}}; return b.perguntas[j]; }
+
+/* ====== ANTICÓPIA (motor validado — Português 7º, 08/10/2026) ====== */
+function normPal(s){
+  return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/<[^>]*>/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+}
+function maiorRun(aw,bw){
+  var bStr=' '+bw.join(' ')+' ', best=0;
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>0; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ if(len>best)best=len; break; }
+    }
+  }
+  return best;
+}
+function cobertoPorRuns(aw,bw,minRun){
+  var bStr=' '+bw.join(' ')+' ', cov=new Array(aw.length).fill(false);
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>=minRun; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)cov[k]=true; break; }
+    }
+  }
+  return cov.filter(Boolean).length;
+}
+function ehCopia(resp, textoBloco, pergunta){
+  var a=normPal(resp), src=normPal(textoBloco), q=normPal(pergunta);
+  if(a.length<5) return false;
+  var qStr=' '+q.join(' ')+' ', keep=new Array(a.length).fill(true);
+  for(var i=0;i<a.length;i++){
+    for(var len=a.length-i; len>=4; len--){
+      var sub=a.slice(i,i+len).join(' ');
+      if(qStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)keep[k]=false; break; }
+    }
+  }
+  var af=a.filter(function(w,idx){return keep[idx];});
+  if(af.length<5) return false;
+  var run=maiorRun(af,src);
+  var cov=cobertoPorRuns(af,src,5);
+  var ratio=cov/af.length;
+  return run>=8 || ratio>0.6;
+}
+
+/* ====== RENDER ====== */
+function textoPlano(bloco){ return bloco.texto.join(' '); }
+function irBloco(i){ var el=document.getElementById('bloco'+i); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function render(){
+  var cont=document.getElementById('blocos'); cont.innerHTML='';
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    var div=document.createElement('div'); div.className='bloco '+bloco.u+(b.aberto?'':' travado'); div.id='bloco'+i;
+    var html='<div class="bloco-cab"><div class="num">'+(i+1)+'</div><div><div class="porto">'+bloco.porto+'</div><h3>'+bloco.emoji+' '+bloco.titulo+'</h3></div></div>';
+    if(!b.aberto){
+      html+='<div class="cadeado">🔒 Esta medida abre quando você conferir a medida anterior.</div>';
+      div.innerHTML=html; cont.appendChild(div); return;
+    }
+    html+='<div class="bloco-corpo"><div class="texto">';
+    bloco.texto.forEach(function(p){ html+= (p.indexOf('<div')===0 || p.indexOf('<ul')===0 ? p : '<p>'+p+'</p>'); });
+    html+='</div>';
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      var tagTxt=p.tag==='conc'?'Conceito':'Aplicação';
+      html+='<div class="perg'+(ep.red?' red':'')+'" id="perg'+i+'_'+j+'">';
+      html+='<span class="tag '+p.tag+'">'+tagTxt+'</span>';
+      html+='<label>'+(j+1)+'. '+p.q+'</label>';
+      html+='<textarea id="ta'+i+'_'+j+'" oninput="digitou('+i+','+j+')">'+(ep.resp||'').replace(/</g,'&lt;')+'</textarea>';
+      html+='<div class="aviso" id="av'+i+'_'+j+'"></div>';
+      html+='<div class="modelo" id="mod'+i+'_'+j+'"><span class="lab">Resposta-modelo</span><p>'+p.modelo+'</p>';
+      html+='<div class="chk" id="chk'+i+'_'+j+'"></div></div>';
+      html+='</div>';
+    });
+    html+='<button class="conferir" id="conf'+i+'" onclick="conferir('+i+')">✔️ Conferir esta medida</button>';
+    html+='<div class="status-bloco" id="st'+i+'"></div>';
+    if(i<BLOCOS.length-1){ html+='<div class="prox" id="px'+i+'"></div>'; }
+    html+='</div>';
+    div.innerHTML=html;
+    cont.appendChild(div);
+  });
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    if(b.aberto && b.conferido){ mostrarConferido(i); }
+    atualizarBotao(i);
+  });
+  atualizarRelatorio();
+  atualizarTrilhaFim();
+}
+
+function digitou(i,j){
+  var ep=estPerg(i,j);
+  ep.resp=document.getElementById('ta'+i+'_'+j).value;
+  if(ep.red){
+    var bloco=BLOCOS[i];
+    if(!ehCopia(ep.resp, textoPlano(bloco), bloco.perguntas[j].q)){
+      ep.red=false;
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso'; av.textContent='';}
+    }
+  }
+  atualizarBotao(i);
+  salvar();
+  atualizarRelatorio();
+}
+
+function atualizarBotao(i){
+  var b=estBloco(i); if(!b.aberto) return;
+  var btn=document.getElementById('conf'+i); if(!btn) return;
+  if(b.conferido){ btn.textContent='✔️ Medida conferida'; btn.disabled=true; return; }
+  var todas=true;
+  BLOCOS[i].perguntas.forEach(function(p,j){
+    var v=(document.getElementById('ta'+i+'_'+j)||{}).value||estPerg(i,j).resp||'';
+    if(v.trim().length<3) todas=false;
+  });
+  btn.disabled=!todas;
+}
+
+function conferir(i){
+  var bloco=BLOCOS[i], b=estBloco(i);
+  var algumBloqueado=false;
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    ep.resp=document.getElementById('ta'+i+'_'+j).value;
+    var av=document.getElementById('av'+i+'_'+j);
+    var copia=ehCopia(ep.resp, textoPlano(bloco), p.q);
+    if(copia){
+      if(!ep.warned || ep.resp===ep.tentou){
+        if(!ep.warned){ ep.warned=true; ep.tentou=ep.resp; }
+        av.className='aviso amarelo';
+        av.innerHTML='✋ Boa parte da sua resposta está igual ao texto. Tente <b>reescrever com as suas palavras</b> — explique como se fosse para um amigo, sem olhar o texto. Pode ficar mais curto e simples: o que vale é ser <b>SEU</b>.';
+        algumBloqueado=true;
+      } else {
+        ep.red=true;
+        av.className='aviso vermelho';
+        av.innerHTML='🔴 Esta resposta continua muito parecida com o texto. Ela foi aceita, mas ficou marcada para revisar. Se reescrever com as suas palavras, a marca some.';
+        document.getElementById('perg'+i+'_'+j).classList.add('red');
+      }
+    } else {
+      ep.red=false;
+      if(av){ av.className='aviso'; av.textContent=''; }
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+    }
+  });
+  salvar();
+  if(algumBloqueado){
+    document.getElementById('st'+i).innerHTML='<span style="color:var(--ambar)">✍️ Reescreva as respostas marcadas em amarelo (mude o que escreveu) e clique em Conferir de novo.</span>';
+    return;
+  }
+  b.conferido=true;
+  if(i<BLOCOS.length-1){ estBloco(i+1).aberto=true; }
+  salvar();
+  render();
+  var alvo=document.getElementById('bloco'+i);
+  if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function mostrarConferido(i){
+  var bloco=BLOCOS[i];
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    var mod=document.getElementById('mod'+i+'_'+j); if(mod) mod.classList.add('show');
+    if(ep.red){ var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.add('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso vermelho'; av.innerHTML='🔴 Resposta marcada para revisar (muito parecida com o texto). Reescreva com as suas palavras para tirar a marca.';}
+    }
+    var chk=document.getElementById('chk'+i+'_'+j); if(chk){
+      var h='<b style="font-size:.8rem;color:#8fe0b4">Confira você: a sua resposta…</b>';
+      p.chk.forEach(function(pt,k){
+        var val=ep.chk[k]||'';
+        h+='<div class="item"><span>'+pt+'</span><span class="simnao">'
+         +'<button class="sim'+(val==='sim'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'sim\')">Sim</button>'
+         +'<button class="nao'+(val==='nao'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'nao\')">Não</button>'
+         +'</span></div>';
+      });
+      chk.innerHTML=h;
+    }
+  });
+  atualizarStatusBloco(i);
+  var btn=document.getElementById('conf'+i); if(btn){ btn.textContent='✔️ Medida conferida'; btn.disabled=true; }
+  if(i<BLOCOS.length-1){
+    var px=document.getElementById('px'+i);
+    if(px) px.innerHTML='<a href="#bloco'+(i+1)+'" onclick="irBloco('+(i+1)+');return false;">➡️ Ir para a próxima medida</a>';
+  }
+}
+
+function marcarChk(i,j,k,val){
+  var ep=estPerg(i,j); ep.chk[k]=val;
+  salvar(); mostrarConferido(i); atualizarStatusBloco(i); atualizarRelatorio();
+}
+
+function statusPergunta(i,j){
+  var ep=estPerg(i,j), p=BLOCOS[i].perguntas[j];
+  if(ep.red) return 'revisar';
+  var temNao=false, todasResp=true;
+  p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao') temNao=true; if(!ep.chk[k]) todasResp=false; });
+  if(temNao) return 'revisar';
+  if(!todasResp) return 'pendente';
+  return 'ok';
+}
+function atualizarStatusBloco(i){
+  var st=document.getElementById('st'+i); if(!st) return;
+  var revisar=false, pendente=false;
+  BLOCOS[i].perguntas.forEach(function(p,j){ var s=statusPergunta(i,j); if(s==='revisar')revisar=true; if(s==='pendente')pendente=true; });
+  if(revisar) st.innerHTML='<span style="color:#ffb3b3">🔁 Esta medida tem pontos para revisar.</span>';
+  else if(pendente) st.innerHTML='<span style="color:var(--ambar)">📝 Responda a autoavaliação (Sim/Não) de cada pergunta.</span>';
+  else st.innerHTML='<span style="color:#8fe0b4">✅ Medida concluída com sucesso!</span>';
+  atualizarRelatorio();
+}
+
+function atualizarRelatorio(){
+  var lista=[], totalConf=0, totalRed=0, totalNao=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i); if(!b.conferido) return; totalConf++;
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      if(ep.red){ totalRed++; lista.push('Medida '+(i+1)+' ('+bloco.titulo+'): pergunta '+(j+1)+' — resposta muito parecida com o texto.'); }
+      p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao'){ totalNao++; lista.push('Medida '+(i+1)+' ('+bloco.titulo+'): revisar — "'+pt+'"'); } });
+    });
+  });
+  var rev=document.getElementById('revisar'), rl=document.getElementById('revisar-lista');
+  if(lista.length){ rev.style.display='block'; rl.innerHTML=lista.map(function(x){return '<li>'+x+'</li>';}).join(''); }
+  else { rev.style.display='none'; rl.innerHTML=''; }
+  var rc=document.getElementById('rel-conteudo');
+  rc.innerHTML='<b>Medidas conferidas:</b> '+totalConf+' de '+BLOCOS.length+'.<br>'
+    +'<b>Respostas marcadas (muito parecidas com o texto):</b> '+totalRed+'.<br>'
+    +'<b>Pontos marcados como "Não" na autoavaliação:</b> '+totalNao+'.<br>'
+    +(lista.length? '<span style="color:#ffb3b3">Há '+lista.length+' ponto(s) para revisar (lista acima).</span>' : '<span style="color:#8fe0b4">Sem pontos pendentes para revisar. 👏</span>');
+}
+
+/* ====== EXPORTAR / IMPORTAR / ZERAR ====== */
+function exportar(){
+  var dados=JSON.stringify(estado,null,2);
+  var blob=new Blob([dados],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='leitura-guiada_alfaiataria-dos-indices.json'; a.click();
+}
+function importar(ev){
+  var f=ev.target.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false); }catch(e){ mostrarModal('❌ Arquivo inválido.',false); } };
+  r.readAsText(f);
+}
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Tem certeza que quer apagar TODO o progresso desta leitura? (O Quiz continua destravado se já tiver sido destravado.)',true); }
+function mostrarModal(txt,confirmar){
+  document.getElementById('modal-txt').innerHTML=txt;
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none';
+  document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar && acaoZerar){ var c=estado.concluido, ce=estado.concluidoEm; estado={blocos:{}}; if(c){estado.concluido=true; estado.concluidoEm=ce;} salvar(); render(); } acaoZerar=null; fecharModal(); };
+}
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado · Alfaiataria dos Índices · Geografia 7º</title>
+<style>
+  :root{--palco:#15131a;--palco2:#211e28;--aco:#353042;--aco2:#4a4459;--ambar:#f2d36b;--ciano:#3cc9b6;--terra:#e88fb0;--verde:#3ddc84;--vermelho:#e0403f;--azul:#13244a;--texto:#f1eee8;--cinza:#a39db0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#26212e,#15131a 60%),var(--palco);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#0e1a38,#13244a);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:6px solid var(--vermelho)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#c9d6f5;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#dbe4fa;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--palco2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--vermelho);color:#fff;font-weight:bold}
+  .intro{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:#ff8a89;font-size:1.1rem;margin-bottom:8px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--palco2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--palco);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .codigo{background:linear-gradient(120deg,#122a1f,#1b4d36);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe0b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:var(--vermelho);width:0;transition:width .3s}
+  .q{background:var(--palco2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:#ff8a89;font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tipo{float:right;font-size:.7rem;color:#fff;border-radius:10px;padding:2px 8px;background:#2a3a5a}
+  .q .tipo.som{background:#5a2a7a}.q .tipo.rom{background:#1f5a4a}.q .tipo.dis{background:#7a3a1a}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600}
+  .afirm{background:#1b1921;border-left:3px solid var(--aco2);padding:8px 12px;margin:6px 0;border-radius:0 8px 8px 0;font-size:.93rem}
+  .afirm.ok{border-left-color:var(--verde)}.afirm.no{border-left-color:#777;color:#aaa}
+  .alt{display:block;background:#1b1921;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:#ff8a89}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:#ff8a89;background:#2a1620}
+  .alt.certa{border-color:var(--verde);background:#0e2b1f}
+  .alt.errada{border-color:#555;background:#1e1c22;color:#aaa}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1414}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#1b1921;border-left:3px solid var(--ambar);display:none}
+  .exp.show{display:block}
+  .soma input{width:110px;padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#110f15;color:var(--texto);font-size:1.05rem;text-align:center}
+  .soma .lab{font-size:.85rem;color:var(--cinza);margin-left:8px}
+  .q textarea{width:100%;min-height:110px;background:#110f15;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;margin-top:6px}
+  .modelo{display:none;margin-top:10px;padding:10px 12px;background:#0e2b1f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem}
+  .modelo.show{display:block}
+  .enviar{width:100%;background:var(--vermelho);color:#fff;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#2b2732;color:#7d7789;cursor:not-allowed}
+  .gab{background:var(--palco2);border:1px dashed var(--ciano);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#110f15;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--ciano);color:#03262c;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  .fim{background:linear-gradient(120deg,#122a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .fim h3{color:#8fe0b4;margin-bottom:8px}
+  .fim a{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,10,7,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--palco2);border:1px solid var(--ciano);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--ciano);color:#03262c;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+
+  h1,h2,h3{font-family:Georgia,'Times New Roman',serif;letter-spacing:.2px}
+  .fita{height:16px;background:
+    repeating-linear-gradient(90deg,rgba(23,21,28,.85) 0 2px,transparent 2px 10px) 0 0/100% 6px no-repeat,
+    repeating-linear-gradient(90deg,rgba(23,21,28,.95) 0 2px,transparent 2px 50px) 0 0/100% 11px no-repeat,
+    linear-gradient(#f2d36b,#e8c654);box-shadow:0 3px 8px rgba(0,0,0,.45)}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Colégio Coração Feliz · Geografia · 7º ano</div>
+  <h1>📝 Simulado — Alfaiataria dos Índices</h1>
+  <p>28 questões no estilo da prova · múltipla escolha, somatório, números romanos e discursiva · Código SIM</p>
+</header>
+<div class="fita"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html">🗺️ Resumo</a>
+    <a class="on" href="simulado.html">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="codigo" id="codigo"><div>Seu código de liberação</div><div class="cod" id="cod"></div><div id="codtxt"></div></div>
+
+  <div class="intro">
+    <h2>📝 Valendo!</h2>
+    <p>Faça como se fosse a prova: <b>28 questões</b>, todas obrigatórias. Nas de <b>somatório</b>, some os números das afirmativas corretas. Nas de <b>números romanos</b>, leia as afirmativas I, II, III e IV e escolha a alternativa certa. Na <b>discursiva</b>, escreva com as suas palavras (os pais corrigem com a resposta-modelo do gabarito). Depois de enviar, as respostas travam e sai o código <b>SIM</b>.</p>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="progresso"><div id="barra"></div></div>
+  <div id="questoes"></div>
+  <button class="enviar" id="btn-enviar" onclick="enviar()" disabled>📨 Enviar simulado (responda todas)</button>
+
+  <div class="gab" id="gab">
+    <b>🔑 Gabarito comentado:</b> digite o código SIM que apareceu no topo.<br>
+    <input id="gab-in" placeholder="SIM-XX-YY"><button onclick="abrirGab()">Ver gabarito</button>
+    <div class="msg" id="gab-msg"></div>
+  </div>
+
+  <div class="fim" id="fim" style="display:none">
+    <h3>🏁 Trilha completa!</h3>
+    <p>Você percorreu os quatro materiais na ordem. Agora tudo fica aberto para revisar quantas vezes quiser até a prova.</p>
+    <a href="index.html">🏠 Voltar ao início</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 📏🧵✂️ Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Simulado, leia o Resumo até o fim.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal" style="background:rgba(0,0,0,.75)">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='alfaiataria_indices';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function checarTrava(){
+  if(podeAbrir('simulado')) return true;
+  var txt='Para abrir o Simulado, leia o Resumo até o fim e clique em "Li o resumo até o fim".';
+  if(!etapaConcluida('quiz')) txt='Para abrir o Simulado, envie o Quiz e leia o Resumo até o fim.';
+  if(!etapaConcluida('leitura')) txt='Para abrir o Simulado, conclua a Leitura Guiada, envie o Quiz e leia o Resumo até o fim.';
+  document.getElementById('lock-txt').textContent=txt;
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== QUESTÕES (conteúdo do livro Callis Geografia 7 L2, Caps 16 e 17) — correta guardada pelo id ====== */
+var Q=[
+ {tipo:"mc",p:"Após a Segunda Guerra Mundial e a criação da ONU, em 1945, o mundo passou a se preocupar em medir o desenvolvimento dos países porque:",alts:[
+  {id:"a",t:"queria saber se os países, ricos ou pobres, apresentavam melhorias econômicas e sociais — fatores que influenciaram as duas guerras mundiais.",ok:true,e:"É o que o livro explica na p. 52: a ONU busca manter a paz com melhorias estruturais."},
+  {id:"b",t:"a ONU queria organizar uma competição entre os países mais ricos.",e:"O objetivo era acompanhar melhorias econômicas e sociais para manter a paz, não fazer competição."},
+  {id:"c",t:"era preciso calcular o tamanho do território de cada país.",e:"Território não é o que os índices de desenvolvimento medem."},
+  {id:"d",t:"os países ricos queriam proibir o comércio com os países pobres.",e:"Nada disso aparece no livro."}]},
+ {tipo:"mc",p:"Segundo o texto de abertura do capítulo 16, a importância do PIB está no fato de que:",alts:[
+  {id:"a",t:"existem padrões internacionais para calculá-lo, o que permite comparar os países.",ok:true,e:"Correto — mas o mesmo texto avisa que o PIB não é indicador de bem-estar."},
+  {id:"b",t:"ele mede com precisão o bem-estar da população.",e:"O texto diz justamente que o PIB NÃO pode ser tomado como indicador de bem-estar."},
+  {id:"c",t:"ele mostra como a renda é distribuída entre as pessoas.",e:"O PIB não capta a distribuição de renda."},
+  {id:"d",t:"ele inclui a preservação do meio ambiente.",e:"Por não incluir o meio ambiente, estudiosos discutem trocá-lo por um indicador de desenvolvimento sustentável."}]},
+ {tipo:"mc",p:"O PIB de um país cresceu num ano, mas quase todo o aumento ficou com os donos das maiores empresas. Usando o PIB per capita, o governo anunciou: 'a vida de cada habitante melhorou'. De acordo com o livro, esse anúncio:",alts:[
+  {id:"a",t:"pode estar 'maquiando' o desenvolvimento, porque o PIB per capita divide a riqueza como se fosse igual e esconde a desigualdade.",ok:true,e:"O livro alerta que o PIB per capita pode mostrar um crescimento que não melhora a vida da população."},
+  {id:"b",t:"está correto, porque o PIB per capita mostra a renda real de cada pessoa.",e:"O PIB per capita é uma média; não mostra quanto cada pessoa realmente recebe."},
+  {id:"c",t:"está correto, porque o PIB mede o bem-estar da população.",e:"O PIB não mede bem-estar."},
+  {id:"d",t:"está errado apenas porque o PIB não pode ser calculado para um ano.",e:"O PIB geralmente é calculado justamente para o período de um ano."}]},
+ {tipo:"mc",p:"A 'cesta internacional' usada no PIB per capita PPC tem como referência o custo dos produtos nos Estados Unidos. Por causa disso:",alts:[
+  {id:"a",t:"nos Estados Unidos, o PIB per capita e o PIB per capita PPC são iguais.",ok:true,e:"Como a referência é o próprio custo americano, os dois valores coincidem lá."},
+  {id:"b",t:"nos Estados Unidos, o PIB per capita PPC é sempre o dobro do PIB per capita.",e:"Lá os dois valores são iguais."},
+  {id:"c",t:"o PPC só pode ser calculado para os Estados Unidos.",e:"O PPC é calculado para vários países; os EUA são só a referência."},
+  {id:"d",t:"os Estados Unidos têm o menor custo de vida do mundo.",e:"O livro não diz isso; os EUA apenas servem de referência por causa do dólar."}]},
+ {tipo:"mc",p:"Mesmo com a criação do PIB per capita PPC, ele não é considerado uma boa medida do desenvolvimento de uma nação porque:",alts:[
+  {id:"a",t:"não considera aspectos sociais como saúde e educação e continua desprezando a desigualdade social.",ok:true,e:"É a crítica do livro na p. 54."},
+  {id:"b",t:"não leva em conta o custo de vida dos países.",e:"O PPC existe justamente para corrigir o PIB per capita pelo custo de vida."},
+  {id:"c",t:"não pode ser convertido em dólares.",e:"Ele é expresso em dólares."},
+  {id:"d",t:"mede apenas o tamanho da população.",e:"Ele mede renda por habitante corrigida pelo custo de vida, não o tamanho da população."}]},
+ {tipo:"som",p:"Sobre os ÍNDICES DE DESENVOLVIMENTO (Capítulo 16), some os números das afirmativas CORRETAS:",itens:[
+  {v:1,t:"O cálculo do PIB considera os lucros das empresas, os salários pagos aos trabalhadores e os investimentos do governo.",ok:true,e:"Correta (p. 52)."},
+  {v:2,t:"O PIB per capita mostra com precisão a desigualdade de renda de um país.",e:"Errada: o PIB per capita esconde a desigualdade."},
+  {v:4,t:"O IDH foi adotado pela ONU e considera renda, longevidade e educação.",ok:true,e:"Correta (p. 55)."},
+  {v:8,t:"Países mais pobres que o Brasil nunca podem ter coeficiente de Gini menor que o brasileiro.",e:"Errada: podem, sim — a Etiópia tem 0,350 e o Brasil, 0,529."},
+  {v:16,t:"Para avaliar o desenvolvimento de um país, o ideal é usar vários dados e índices ao mesmo tempo.",ok:true,e:"Correta (p. 59)."}]},
+ {tipo:"mc",p:"Na visão do economista Amartya Sen, um dos criadores do IDH, para um país se desenvolver é necessário:",alts:[
+  {id:"a",t:"que o cidadão tenha condições de fazer escolhas e exercer sua cidadania.",ok:true,e:"É a ideia apresentada no quadro 'Conheça o autor' (p. 55)."},
+  {id:"b",t:"aumentar apenas a produção das indústrias.",e:"Sen se preocupa com o bem-estar e a liberdade das pessoas, não só com a produção."},
+  {id:"c",t:"diminuir o número de habitantes.",e:"Isso não aparece nas ideias dele."},
+  {id:"d",t:"concentrar a renda nas mãos de quem investe.",e:"Concentrar renda aumenta a desigualdade — o oposto do bem-estar de todos."}]},
+ {tipo:"mc",p:"No cálculo do IDH, o parâmetro RENDA é medido pelo:",alts:[
+  {id:"a",t:"Rendimento Nacional Bruto (RNB) per capita PPC.",ok:true,e:"PIB + entradas de empresas nacionais no exterior − remessas de estrangeiras, por habitante, ajustado ao poder de compra."},
+  {id:"b",t:"coeficiente de Gini.",e:"O Gini mede a desigualdade e não faz parte do IDH."},
+  {id:"c",t:"valor do salário mínimo do país.",e:"O salário mínimo não é o indicador usado."},
+  {id:"d",t:"número de empresas estrangeiras instaladas no país.",e:"As empresas entram no cálculo do RNB apenas pelo dinheiro que enviam para fora."}]},
+ {tipo:"mc",p:"No IDH, a LONGEVIDADE é medida pela expectativa de vida ao nascer. Uma expectativa de vida elevada revela:",alts:[
+  {id:"a",t:"boa qualidade de vida e bom acesso à saúde por grande parte da população.",ok:true,e:"É o que o livro diz sobre a longevidade (p. 55)."},
+  {id:"b",t:"que o país tem muitas pessoas jovens.",e:"Expectativa de vida não mede a idade da população."},
+  {id:"c",t:"que o país tem alta desigualdade de renda.",e:"Quem mede desigualdade de renda é o Gini."},
+  {id:"d",t:"que o país tem um território muito grande.",e:"Território não tem relação com esse parâmetro."}]},
+ {tipo:"mc",p:"No parâmetro EDUCAÇÃO do IDH, a média de anos de escolaridade é calculada entre as pessoas com:",alts:[
+  {id:"a",t:"25 anos ou mais.",ok:true,e:"É o que o livro informa (p. 55)."},
+  {id:"b",t:"até 14 anos.",e:"Não. A média de anos de estudo considera pessoas com 25 anos ou mais."},
+  {id:"c",t:"entre 6 e 10 anos.",e:"Não. A média considera pessoas com 25 anos ou mais."},
+  {id:"d",t:"mais de 60 anos, apenas.",e:"Não. A média considera todas as pessoas com 25 anos ou mais."}]},
+ {tipo:"rom",p:"Analise as afirmativas sobre os índices estudados no Capítulo 16:",itens:[
+  {n:"I",t:"O PIB per capita é obtido dividindo o PIB pelo número de habitantes.",ok:true,e:"Correta."},
+  {n:"II",t:"O IDH varia de 0 a 1, e quanto mais perto de 1, melhor o desenvolvimento humano.",ok:true,e:"Correta."},
+  {n:"III",t:"No coeficiente de Gini, quanto mais perto de 1, mais igualitária é a distribuição da renda.",e:"Errada: perto de 1 significa MAIS desigualdade."},
+  {n:"IV",t:"O IDH consegue medir a qualidade da educação oferecida à população.",e:"Errada: essa é justamente uma lacuna do IDH."}],
+  alts:[{id:"a",t:"Apenas I e II.",ok:true,e:"III e IV são erradas."},{id:"b",t:"Apenas I, II e III.",e:"A III é errada."},{id:"c",t:"Apenas III e IV.",e:"Essas são as erradas."},{id:"d",t:"Todas as afirmativas.",e:"III e IV são erradas."}]},
+ {tipo:"mc",p:"Observe o IDH de quatro países imaginários: P = 0,540; Q = 0,690; R = 0,760; S = 0,830. A classificação correta, segundo as faixas da ONU, é:",alts:[
+  {id:"a",t:"P baixo, Q médio, R elevado e S muito elevado.",ok:true,e:"Baixo < 0,550; médio 0,550–0,699; elevado 0,700–0,799; muito elevado ≥ 0,800."},
+  {id:"b",t:"P médio, Q elevado, R elevado e S muito elevado.",e:"P (0,540) é baixo e Q (0,690) é médio."},
+  {id:"c",t:"P baixo, Q elevado, R muito elevado e S muito elevado.",e:"Q (0,690) é médio e R (0,760) é elevado."},
+  {id:"d",t:"P baixo, Q médio, R médio e S elevado.",e:"R (0,760) é elevado e S (0,830) é muito elevado."}]},
+ {tipo:"mc",p:"Por que vários países tiveram o IDH aumentado na década de 1990, mas depois não conseguiram mais avançar?",alts:[
+  {id:"a",t:"Porque, para aumentar a longevidade, é preciso resolver problemas sociais reais (água, esgoto, saúde, moradia), e eles não os resolveram.",ok:true,e:"Na saúde os números têm mais chance de mostrar a realidade, e não dá para 'esconder' esses problemas."},
+  {id:"b",t:"Porque o IDH deixou de ser calculado depois de 1990.",e:"O IDH continua sendo calculado (o livro traz dados de 2022)."},
+  {id:"c",t:"Porque o IDH mede apenas o PIB.",e:"O IDH mede renda, longevidade e educação."},
+  {id:"d",t:"Porque a ONU proibiu que o IDH continuasse subindo.",e:"Isso não existe."}]},
+ {tipo:"mc",p:"O IDHM (Índice de Desenvolvimento Humano Municipal) é importante para o Brasil porque:",alts:[
+  {id:"a",t:"o país é continental e muito populoso, e o índice por município mostra como o desenvolvimento se distribui pelo território.",ok:true,e:"É a justificativa do livro (p. 57)."},
+  {id:"b",t:"ele substitui o PIB no cálculo da economia.",e:"O IDHM é o IDH calculado por município; não substitui o PIB."},
+  {id:"c",t:"ele mede a desigualdade de renda entre as pessoas.",e:"Isso é o coeficiente de Gini."},
+  {id:"d",t:"ele só é calculado para as capitais.",e:"Ele é calculado para os municípios — inclusive Melgaço (PA) e São Caetano do Sul (SP)."}]},
+ {tipo:"mc",p:"Segundo o PNUD, em 2010 o melhor e o pior IDHM do Brasil eram, respectivamente, os de:",alts:[
+  {id:"a",t:"São Caetano do Sul (SP), com 0,862, e Melgaço (PA), com 0,418.",ok:true,e:"Dados do livro (p. 57)."},
+  {id:"b",t:"Melgaço (PA), com 0,862, e São Caetano do Sul (SP), com 0,418.",e:"Os municípios estão trocados."},
+  {id:"c",t:"São Caetano do Sul (SP), com 0,952, e Melgaço (PA), com 0,381.",e:"0,952 era o IDH da Suíça e 0,381 o do Sudão do Sul (2022)."},
+  {id:"d",t:"Melgaço (PA), com 0,760, e São Caetano do Sul (SP), com 0,763.",e:"0,760 era o IDH do Brasil e 0,763 a média da América Latina e Caribe."}]},
+ {tipo:"mc",p:"(Inspirada em atividade do livro) Em um país fictício com IDH elevado, PIB alto e coeficiente de Gini acima de 0,600, podemos afirmar que:",alts:[
+  {id:"a",t:"é uma economia que produz riqueza, mas com distribuição desigual, indicando alta desigualdade social.",ok:true,e:"IDH e PIB altos mostram riqueza; Gini alto mostra que ela está concentrada."},
+  {id:"b",t:"é um país pobre, com baixa produção de riqueza e alta desigualdade.",e:"PIB alto indica alta produção de riqueza."},
+  {id:"c",t:"é um país rico, com ótima qualidade de vida para toda a população.",e:"O Gini acima de 0,600 mostra que a riqueza não chega igualmente a todos."},
+  {id:"d",t:"tem uma economia estável e focada no bem-estar de todos.",e:"Gini alto é sinal de desigualdade, não de bem-estar para todos."}]},
+ {tipo:"mc",p:"O coeficiente de Gini, índice que mede a desigualdade na distribuição da riqueza, foi desenvolvido em 1912 por:",alts:[
+  {id:"a",t:"Corrado Gini, estatístico italiano.",ok:true,e:"Corrado Gini (1884-1965)."},
+  {id:"b",t:"Amartya Sen, economista indiano.",e:"Amartya Sen é um dos criadores do IDH (1990)."},
+  {id:"c",t:"Mahbub ul Haq, economista paquistanês.",e:"Mahbub ul Haq é o outro criador do IDH."},
+  {id:"d",t:"técnicos da ONU, em 1945.",e:"A ONU foi criada em 1945; o Gini é de 1912 e foi criado por Corrado Gini."}]},
+ {tipo:"mc",p:"O artigo 3º da Constituição Federal de 1988, apresentado na abertura do capítulo 17, tem entre os objetivos fundamentais do Brasil:",alts:[
+  {id:"a",t:"erradicar a pobreza e a marginalização e reduzir as desigualdades sociais e regionais.",ok:true,e:"É o inciso III do artigo 3º."},
+  {id:"b",t:"aumentar o PIB a qualquer custo.",e:"Isso não está no artigo 3º."},
+  {id:"c",t:"garantir que só a elite tenha acesso à terra.",e:"O artigo fala em sociedade livre, justa e solidária, sem discriminação."},
+  {id:"d",t:"acabar com o ensino público.",e:"Isso não está no artigo 3º."}]},
+ {tipo:"mc",p:"Em 2022, os 5% mais ricos do Brasil detinham 39,9% da renda nacional. Esse dado é um exemplo de:",alts:[
+  {id:"a",t:"concentração de renda.",ok:true,e:"Uma pequena parcela da população fica com grande parte da renda."},
+  {id:"b",t:"distribuição igualitária da renda.",e:"Se fosse igualitária, 5% da população teria cerca de 5% da renda."},
+  {id:"c",t:"IDH muito elevado.",e:"O dado não fala de IDH."},
+  {id:"d",t:"PIB per capita PPC.",e:"O dado não fala de poder de compra."}]},
+ {tipo:"mc",p:"Um sistema de impostos é chamado de PROGRESSIVO quando:",alts:[
+  {id:"a",t:"quem recebe mais renda paga mais impostos.",ok:true,e:"Definição do livro (p. 67)."},
+  {id:"b",t:"a carga de impostos é maior sobre os mais pobres.",e:"Esse é o sistema REGRESSIVO."},
+  {id:"c",t:"todos pagam exatamente o mesmo valor de imposto.",e:"Isso não é a definição de progressivo."},
+  {id:"d",t:"os impostos diminuem a cada ano.",e:"Progressividade não tem a ver com o passar dos anos."}]},
+ {tipo:"rom",p:"Analise as afirmativas sobre as RAÍZES DA DESIGUALDADE no Brasil:",itens:[
+  {n:"I",t:"No período colonial, a concentração de terras pela elite latifundiária era fonte de poder político e econômico.",ok:true,e:"Correta."},
+  {n:"II",t:"Após a abolição da escravatura, a estrutura social mudou de forma significativa e a desigualdade desapareceu.",e:"Errada: o livro diz que essa condição não mudou de maneira significativa."},
+  {n:"III",t:"No século XX, com a industrialização e a urbanização, a educação passou a ser fundamental para o acesso à renda.",ok:true,e:"Correta."},
+  {n:"IV",t:"Mesmo com a modernização da economia, as desigualdades continuaram sendo reforçadas ao longo do tempo.",ok:true,e:"Correta."}],
+  alts:[{id:"a",t:"Apenas I, III e IV.",ok:true,e:"Só a II é errada."},{id:"b",t:"Apenas I e II.",e:"A II é errada."},{id:"c",t:"Apenas II e IV.",e:"A II é errada."},{id:"d",t:"Todas as afirmativas.",e:"A II é errada."}]},
+ {tipo:"mc",p:"Até os anos 1970, as escolas públicas brasileiras de Ensino Fundamental e Ensino Médio:",alts:[
+  {id:"a",t:"tinham, em geral, boa qualidade, mas eram acessíveis somente a pequenas parcelas da população.",ok:true,e:"Depois, as vagas aumentaram, mas a qualidade não acompanhou."},
+  {id:"b",t:"tinham baixa qualidade e atendiam toda a população.",e:"Era o contrário: boa qualidade, mas para poucos."},
+  {id:"c",t:"não existiam.",e:"Existiam, mas eram acessíveis a poucos."},
+  {id:"d",t:"eram todas particulares.",e:"O livro fala de escolas públicas de boa qualidade nesse período."}]},
+ {tipo:"mc",p:"Comparando os períodos da formação do Brasil, o fator que mais mantém a desigualdade social no período URBANO-INDUSTRIAL é:",alts:[
+  {id:"a",t:"a dificuldade de acesso à formação escolar.",ok:true,e:"No urbano-industrial, a educação passou a ser a chave para a renda."},
+  {id:"b",t:"a dificuldade de acesso à terra.",e:"Esse era o fator do período agroexportador."},
+  {id:"c",t:"a escravidão.",e:"A escravidão foi abolida antes do período urbano-industrial."},
+  {id:"d",t:"a falta de indústrias.",e:"O período se chama urbano-industrial justamente pela industrialização."}]},
+ {tipo:"som",p:"Sobre a DESIGUALDADE SOCIAL (Capítulo 17), some os números das afirmativas CORRETAS:",itens:[
+  {v:1,t:"A desigualdade social existe no mundo todo, mas varia em nível de um país para outro.",ok:true,e:"Correta (p. 66)."},
+  {v:2,t:"No Ensino Superior, as melhores instituições brasileiras são particulares.",e:"Errada: no Ensino Superior as melhores são públicas."},
+  {v:4,t:"A Lei de Cotas, de 2012, é uma política pública que busca democratizar o acesso ao Ensino Superior.",ok:true,e:"Correta (p. 69)."},
+  {v:8,t:"A expectativa de vida tende a ser maior nas unidades federativas com maiores rendimentos e maior escolaridade.",ok:true,e:"Correta (p. 72)."},
+  {v:16,t:"Violência urbana, narcotráfico e mortes no trânsito não interferem na expectativa de vida.",e:"Errada: são fatores de risco que diminuem a expectativa de vida."}]},
+ {tipo:"mc",p:"Sobre as desigualdades regionais na EDUCAÇÃO, o livro mostra que as maiores taxas de analfabetismo estão:",alts:[
+  {id:"a",t:"no Nordeste, seguido do Norte.",ok:true,e:"As menores taxas estão no Sul e no Sudeste."},
+  {id:"b",t:"no Sul, seguido do Sudeste.",e:"Sul e Sudeste têm as MENORES taxas."},
+  {id:"c",t:"no Centro-Oeste, seguido do Sul.",e:"O livro aponta Nordeste e Norte."},
+  {id:"d",t:"igualmente em todas as regiões.",e:"A desigualdade no país não é homogênea."}]},
+ {tipo:"mc",p:"Um sistema de transporte coletivo eficiente, confortável e barato é citado no livro como um fator que:",alts:[
+  {id:"a",t:"garante mobilidade às pessoas de baixa renda, facilitando o acesso ao trabalho, à educação e às áreas de cultura e lazer.",ok:true,e:"É o que o livro diz na p. 74."},
+  {id:"b",t:"aumenta a desigualdade de renda.",e:"É a falta de bom transporte coletivo que agrava a desigualdade."},
+  {id:"c",t:"beneficia apenas quem tem carro.",e:"Transporte coletivo beneficia principalmente quem não tem transporte próprio."},
+  {id:"d",t:"não tem relação com a desigualdade.",e:"O livro diz que o transporte é um reflexo da desigualdade."}]},
+ {tipo:"rom",p:"Analise as afirmativas sobre QUALIDADE DE VIDA e DESIGUALDADE DE GÊNERO:",itens:[
+  {n:"I",t:"Se um país tem boas escolas e bons hospitais públicos, a diferença de renda entre ricos e pobres perde parte de sua importância.",ok:true,e:"Correta."},
+  {n:"II",t:"O saneamento básico inclui coleta de lixo, tratamento de esgoto e fornecimento de água tratada.",ok:true,e:"Correta."},
+  {n:"III",t:"A desigualdade entre os gêneros faz com que, em muitos casos, mulheres recebam salários menores que homens na mesma função.",ok:true,e:"Correta."},
+  {n:"IV",t:"Segundo o relatório citado no livro, as mulheres recebem 19,4% a MAIS que os homens.",e:"Errada: elas recebem 19,4% a MENOS."}],
+  alts:[{id:"a",t:"Apenas I, II e III.",ok:true,e:"Só a IV é errada."},{id:"b",t:"Apenas I e IV.",e:"A IV é errada."},{id:"c",t:"Apenas II e III.",e:"A I também é correta."},{id:"d",t:"Todas as afirmativas.",e:"A IV é errada."}]},
+ {tipo:"dis",p:"DISCURSIVA — O Brasil tem IDH considerado elevado (0,760 em 2022), mas um coeficiente de Gini muito alto (0,529). Explique, com as suas palavras, o que cada índice mede e por que os dois números, juntos, mostram que o desenvolvimento brasileiro é desigual.",
+  modelo:"<b>Resposta-modelo (para os pais corrigirem):</b> o IDH mede o desenvolvimento humano com três parâmetros — renda (RNB per capita PPC), longevidade (expectativa de vida ao nascer) e educação (anos de estudo) — e vai de 0 a 1 (quanto mais perto de 1, melhor). O coeficiente de Gini mede a desigualdade na distribuição da renda; também vai de 0 a 1, mas quanto mais perto de 1, mais desigual. Juntos, mostram que o Brasil produz riqueza e tem condições médias razoáveis, mas essa riqueza está concentrada nas mãos de poucos (em 2022, os 5% mais ricos tinham 39,9% da renda). A média do IDH esconde grandes diferenças entre pessoas e regiões.<br><b>Critérios:</b> (1) explicou o que o IDH mede (com pelo menos 2 parâmetros); (2) explicou o que o Gini mede e o sentido da escala; (3) concluiu que há riqueza/desenvolvimento médio, mas mal distribuído (desigual)."}
+];
+
+/* ====== EMBARALHAMENTO COM SEMENTE FIXA (mulberry32) — correta guardada pelo id ====== */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var rnd=mulberry32(714222669);
+Q.forEach(function(q){ if(q.alts){ var arr=q.alts.slice(); for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp; } q.ordem=arr; } if(q.tipo==='som'){ q.soma=q.itens.filter(function(x){return x.ok;}).reduce(function(a,x){return a+x.v;},0); } });
+var OBJ=Q.filter(function(q){return q.tipo!=='dis';}).length;
+
+/* ====== ESTADO ====== */
+var CHAVE=KIT+'_simulado_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {resp:{},enviado:false}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+var LETRAS='ABCDEFGHJKLMNPQRSTUVWXYZ';
+function gerarCodigo(ac){ var xx=(ac<10?'0':'')+ac; var yy=LETRAS[Math.floor(Math.random()*LETRAS.length)]+LETRAS[Math.floor(Math.random()*LETRAS.length)]; return 'SIM-'+xx+'-'+yy; }
+function respondida(i){ var q=Q[i], r=estado.resp[i]; if(r===undefined||r===null||r==='') return false; if(q.tipo==='dis') return String(r).trim().length>=3; return true; }
+function acertou(i){ var q=Q[i], r=estado.resp[i]; if(q.tipo==='som') return parseInt(r,10)===q.soma; if(q.tipo==='dis') return null; var a=q.alts.filter(function(x){return x.id===r;})[0]; return !!(a&&a.ok); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+
+function render(){
+  var c=document.getElementById('questoes'); var h=''; var G=estado.gabarito;
+  Q.forEach(function(q,i){
+    var tipoTxt={mc:'Múltipla escolha',som:'Somatório',rom:'Números romanos',dis:'Discursiva'}[q.tipo];
+    h+='<div class="q" id="q'+i+'"><span class="tipo '+q.tipo+'">'+tipoTxt+'</span><div class="num">Questão '+(i+1)+' de '+Q.length+'</div><h3>'+q.p+'</h3>';
+    if(q.tipo==='som'||q.tipo==='rom'){
+      q.itens.forEach(function(it){ var lab=q.tipo==='som'? ('('+(it.v<10?'0':'')+it.v+') ') : (it.n+'. '); var cls='afirm'+(G?(it.ok?' ok':' no'):''); h+='<div class="'+cls+'">'+lab+it.t+(G?'<div class="exp show">'+(it.ok?'✅ ':'❌ ')+it.e+'</div>':'')+'</div>'; });
+    }
+    if(q.tipo==='som'){
+      var r=estado.resp[i]; var ok=G?acertou(i):null;
+      h+='<div class="soma" style="margin-top:10px">Soma: <input type="number" min="0" max="31" id="som'+i+'" value="'+(r!==undefined?esc(r):'')+'" '+(estado.enviado?'disabled':'')+' oninput="marcar('+i+',this.value)"><span class="lab">'+(G?(ok?'✅ Correto: '+q.soma:'❌ Você somou '+esc(r)+'; o certo é '+q.soma):'')+'</span></div>';
+    } else if(q.tipo==='dis'){
+      h+='<textarea id="dis'+i+'" '+(estado.enviado?'disabled':'')+' oninput="marcar('+i+',this.value)" placeholder="Escreva aqui com as suas palavras…">'+esc(estado.resp[i]||'')+'</textarea>';
+      h+='<div class="modelo'+(G?' show':'')+'">'+q.modelo+'</div>';
+    } else {
+      q.ordem.forEach(function(a,k){
+        var letra='abcd'[k]; var sel=estado.resp[i]===a.id; var cls='alt'+(sel?' sel':'');
+        if(G){ if(a.ok) cls+=' certa'; else if(sel) cls+=' marcada-errada'; else cls+=' errada'; }
+        h+='<label class="'+cls+'"><input type="radio" name="q'+i+'" value="'+a.id+'" '+(sel?'checked':'')+' '+(estado.enviado?'disabled':'')+' onchange="marcar('+i+',\''+a.id+'\')"> <b>'+letra+')</b> '+a.t+(G?'<div class="exp show">'+(a.ok?'✅ ':'')+a.e+'</div>':'')+'</label>';
+      });
+    }
+    h+='</div>';
+  });
+  c.innerHTML=h; atualizarBarra(); if(estado.enviado) mostrarEnviado();
+}
+function marcar(i,v){ if(estado.enviado) return; estado.resp[i]=v; salvar(); var q=document.getElementById('q'+i); if(Q[i].tipo==='mc'||Q[i].tipo==='rom'){ var labs=q.querySelectorAll('.alt'); for(var k=0;k<labs.length;k++){ labs[k].classList.toggle('sel', labs[k].querySelector('input').value===v); } } atualizarBarra(); }
+function atualizarBarra(){ var n=0; Q.forEach(function(q,i){ if(respondida(i)) n++; }); document.getElementById('barra').style.width=(n/Q.length*100)+'%'; var b=document.getElementById('btn-enviar'); if(!estado.enviado){ b.disabled=n<Q.length; b.textContent=n<Q.length?'📨 Enviar simulado ('+n+' de '+Q.length+' respondidas)':'📨 Enviar simulado'; } }
+function enviar(){
+  if(estado.enviado) return;
+  var ac=0; Q.forEach(function(q,i){ if(acertou(i)===true) ac++; });
+  estado.acertos=ac; estado.objetivas=OBJ; estado.codigo=gerarCodigo(ac); estado.enviado=true; estado.concluido=true; estado.concluidoEm=new Date().toISOString();
+  salvar(); render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mostrarEnviado(){
+  var b=document.getElementById('btn-enviar'); b.disabled=true; b.textContent='✅ Simulado enviado — respostas travadas';
+  document.getElementById('codigo').classList.add('show'); document.getElementById('cod').textContent=estado.codigo;
+  document.getElementById('codtxt').textContent='Anote este código para os pais. Ele abre o gabarito comentado (a discursiva é corrigida com a resposta-modelo).';
+  document.getElementById('gab').classList.add('show'); document.getElementById('fim').style.display='block';
+}
+function abrirGab(){ var v=document.getElementById('gab-in').value.trim().toUpperCase(); var m=document.getElementById('gab-msg'); if(v===estado.codigo||v==='PAIS-77'){ estado.gabarito=true; salvar(); render(); m.innerHTML='<span style="color:#8fe0b4">Gabarito liberado: '+estado.acertos+' acertos de '+OBJ+' questões objetivas (+ 1 discursiva para corrigir).</span>'; } else { m.innerHTML='<span style="color:#ffb3b3">Código incorreto.</span>'; } }
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='simulado_alfaiataria-dos-indices.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Apagar as respostas deste Simulado? (Se ele já foi enviado, o código e a conclusão são mantidos.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ if(!estado.enviado){ estado={resp:{},enviado:false}; salvar(); render(); } else { mostrarModal('O Simulado já foi enviado: as respostas ficam travadas. Para refazer do zero, use "Zerar o kit inteiro" no Início.',false); acaoZerar=null; return; } } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ render(); }
+</script>
+</body>
+</html>

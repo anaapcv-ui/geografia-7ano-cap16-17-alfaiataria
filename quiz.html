@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz · Alfaiataria dos Índices · Geografia 7º</title>
+<style>
+  :root{--palco:#15131a;--palco2:#211e28;--aco:#353042;--aco2:#4a4459;--ambar:#f2d36b;--ciano:#3cc9b6;--terra:#e88fb0;--verde:#3ddc84;--vermelho:#ef5b5b;--texto:#f1eee8;--cinza:#a39db0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#2a2533,#15131a 60%),var(--palco);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#0f2a2a,#16261b);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--ciano)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#c6f3ea;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#e2dcd0;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--palco2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--ciano);color:#03262c;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--ciano);font-size:1.1rem;margin-bottom:8px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--palco2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--palco);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .codigo{background:linear-gradient(120deg,#122a1f,#1b4d36);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe0b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:linear-gradient(90deg,var(--ambar),var(--ciano),var(--terra));width:0;transition:width .3s}
+  .q{background:var(--palco2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:var(--ciano);font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tema{float:right;font-size:.7rem;color:var(--cinza);background:var(--palco);border:1px solid var(--aco2);border-radius:10px;padding:2px 8px}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600}
+  .alt{display:block;background:#1b1921;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:var(--ciano)}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:var(--ciano);background:#123030}
+  .alt.certa{border-color:var(--verde);background:#0e2b1f}
+  .alt.errada{border-color:#555;background:#1e1c22;color:#aaa}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1414}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#1b1921;border-left:3px solid var(--ambar);display:none}
+  .exp.show{display:block}
+  .enviar{width:100%;background:var(--ciano);color:#03262c;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#2b2732;color:#7d7789;cursor:not-allowed}
+  .gab{background:var(--palco2);border:1px dashed var(--ciano);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#110f15;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--ciano);color:#03262c;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  .trilha-fim{background:linear-gradient(120deg,#122a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe0b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#2b2732;color:#7d7789;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,10,7,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--palco2);border:1px solid var(--ciano);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--ciano);color:#03262c;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+
+  h1,h2,h3{font-family:Georgia,'Times New Roman',serif;letter-spacing:.2px}
+  .fita{height:16px;background:
+    repeating-linear-gradient(90deg,rgba(23,21,28,.85) 0 2px,transparent 2px 10px) 0 0/100% 6px no-repeat,
+    repeating-linear-gradient(90deg,rgba(23,21,28,.95) 0 2px,transparent 2px 50px) 0 0/100% 11px no-repeat,
+    linear-gradient(#f2d36b,#e8c654);box-shadow:0 3px 8px rgba(0,0,0,.45)}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Alfaiataria dos Índices · Geografia 7º ano · CCF</div>
+  <h1>🎯 Quiz — Prova de Medidas</h1>
+  <p>15 questões · Capítulos 16 e 17 · Código MED para os pais</p>
+</header>
+<div class="fita"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a class="on" href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="codigo" id="codigo"><div>Seu código de liberação</div><div class="cod" id="cod"></div><div id="codtxt"></div></div>
+
+  <div class="intro">
+    <h2>✂️ Hora da prova de roupa</h2>
+    <p>Responda as <b>15 questões</b> (todas obrigatórias). Depois de <b>Enviar</b>, as respostas travam, sai o seu <b>código MED</b> e o gabarito comentado abre com o código. Ao enviar, o <b>🗺️ Resumo destrava</b>.</p>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="progresso"><div id="barra"></div></div>
+  <div id="questoes"></div>
+  <button class="enviar" id="btn-enviar" onclick="enviar()" disabled>📨 Enviar respostas (responda todas)</button>
+
+  <div class="gab" id="gab">
+    <b>🔑 Gabarito comentado:</b> digite o código MED que apareceu no topo.<br>
+    <input id="gab-in" placeholder="MED-XX-YY"><button onclick="abrirGab()">Ver gabarito</button>
+    <div class="msg" id="gab-msg"></div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Resumo</h3>
+    <p id="trilha-fim-txt">O Resumo destrava quando você enviar o Quiz.</p>
+    <a class="btn off" id="btn-prox" href="resumo.html">🗺️ Ir para o Resumo</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 📏🧵✂️</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Quiz, conclua a Leitura Guiada.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal" style="background:rgba(0,0,0,.75)">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='alfaiataria_indices';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('quiz')) return true;
+  var L=lerJSON(KIT+'_leitura_v1'); var p=(L&&L.progresso)||{conferidos:0,total:12,chkPendentes:0};
+  var faltam=p.total-p.conferidos;
+  var txt= faltam>0 ? 'Para abrir o Quiz, conclua a Leitura Guiada: faltam '+faltam+' de '+p.total+' medidas.' : 'Para abrir o Quiz, responda a autoavaliação Sim/Não da Leitura Guiada ('+p.chkPendentes+' ponto(s) pendente(s)).';
+  document.getElementById('lock-txt').textContent=txt;
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== QUESTÕES (conteúdo do livro Callis Geografia 7 L2, Caps 16 e 17) — a correta é guardada pelo id ====== */
+var Q=[
+ {tema:"Cap. 16 · PIB",p:"O Produto Interno Bruto (PIB) de um país é calculado com base:",alts:[
+  {id:"a",t:"na riqueza gerada pela produção e comercialização de todos os setores da economia, considerando lucros das empresas, salários e investimentos do governo.",ok:true,e:"É a definição do livro (p. 52)."},
+  {id:"b",t:"na expectativa de vida e nos anos de estudo da população.",e:"Expectativa de vida e anos de estudo são parâmetros do IDH, não do PIB."},
+  {id:"c",t:"na comparação entre a renda individual e a renda total da população.",e:"Isso é o que faz o coeficiente de Gini, que mede a distribuição da renda."},
+  {id:"d",t:"apenas no preço de uma cesta de produtos básicos nos Estados Unidos.",e:"A cesta internacional é usada para corrigir o PIB per capita (PPC), não para calcular o PIB."}]},
+ {tema:"Cap. 16 · PIB per capita",p:"Qual é a principal falha do PIB per capita como medida do desenvolvimento de um país?",alts:[
+  {id:"a",t:"Ele divide a riqueza como se todos recebessem a mesma parte, escondendo a desigualdade.",ok:true,e:"A riqueza não é distribuída igualmente; por isso o PIB per capita oculta a desigualdade e dá um panorama irreal."},
+  {id:"b",t:"Ele não pode ser convertido para dólares.",e:"Pode, sim: é comum converter os valores para dólares para comparar os países."},
+  {id:"c",t:"Ele só pode ser calculado para países ricos.",e:"Ele é calculado para todos os países; o problema é outro."},
+  {id:"d",t:"Ele mede apenas a expectativa de vida.",e:"Expectativa de vida é a longevidade do IDH. O PIB per capita é o PIB dividido pela população."}]},
+ {tema:"Cap. 16 · PPC",p:"Um país tem PIB per capita MAIOR do que o seu PIB per capita PPC. Segundo o livro, isso indica que:",alts:[
+  {id:"a",t:"o custo de vida nesse país é elevado, e o poder de compra da população é menor do que o PIB per capita sugere.",ok:true,e:"É a regra de leitura do livro (p. 54)."},
+  {id:"b",t:"o custo de vida nesse país é muito baixo.",e:"É o contrário: PIB per capita maior que o PPC indica custo de vida elevado."},
+  {id:"c",t:"esse país só pode ser os Estados Unidos.",e:"Nos Estados Unidos os dois valores são IGUAIS, porque a cesta tem o custo americano como referência."},
+  {id:"d",t:"a desigualdade social nesse país é zero.",e:"O PPC não mede desigualdade — continua desprezando a desigualdade social."}]},
+ {tema:"Cap. 16 · IDH",p:"O Índice de Desenvolvimento Humano (IDH) foi criado em 1990 pelos economistas:",alts:[
+  {id:"a",t:"Amartya Sen, da Índia, e Mahbub ul Haq, do Paquistão.",ok:true,e:"Foram eles que criaram o IDH, depois adotado pela ONU."},
+  {id:"b",t:"Corrado Gini, da Itália, e Amartya Sen, da Índia.",e:"Corrado Gini criou outro índice, o coeficiente de Gini, em 1912."},
+  {id:"c",t:"Mahbub ul Haq e Corrado Gini.",e:"Corrado Gini não participou da criação do IDH."},
+  {id:"d",t:"técnicos da ONU, em 1945, junto com a criação da organização.",e:"A ONU foi criada em 1945, mas o IDH só surgiu em 1990 e foi criado por dois economistas."}]},
+ {tema:"Cap. 16 · IDH",p:"Os três parâmetros usados atualmente no cálculo do IDH são:",alts:[
+  {id:"a",t:"renda, longevidade e educação.",ok:true,e:"Renda (RNB per capita PPC), longevidade (expectativa de vida ao nascer) e educação (anos de estudo)."},
+  {id:"b",t:"renda, desigualdade e violência.",e:"O IDH não mede a desigualdade (por isso existe o Gini) nem a violência."},
+  {id:"c",t:"PIB, população e território.",e:"Território e população não são parâmetros do IDH."},
+  {id:"d",t:"saneamento, transporte e moradia.",e:"Esses fatores influenciam a qualidade de vida (cap. 17), mas não são os parâmetros do IDH."}]},
+ {tema:"Cap. 16 · Faixas do IDH",p:"Um país com IDH de 0,720 é classificado pela ONU como de desenvolvimento humano:",alts:[
+  {id:"a",t:"elevado.",ok:true,e:"Elevado vai de 0,700 a 0,799."},
+  {id:"b",t:"muito elevado.",e:"Muito elevado começa em 0,800."},
+  {id:"c",t:"médio.",e:"Médio vai de 0,550 a 0,699."},
+  {id:"d",t:"baixo.",e:"Baixo é menor que 0,550."}]},
+ {tema:"Cap. 16 · IDH do Brasil",p:"Sobre o IDH do Brasil em 2022, é correto afirmar que:",alts:[
+  {id:"a",t:"era de 0,760, considerado elevado, um pouco abaixo da média da América Latina e Caribe (0,763).",ok:true,e:"Dados do livro: 0,760, 89ª posição, abaixo da média regional de 0,763."},
+  {id:"b",t:"era de 0,952, um dos maiores do mundo.",e:"0,952 era o IDH da Suíça em 2022."},
+  {id:"c",t:"era de 0,381, considerado baixo.",e:"0,381 era o IDH do Sudão do Sul."},
+  {id:"d",t:"era igual em todos os municípios brasileiros.",e:"O IDHM mostra o contrário: de 0,862 (São Caetano do Sul) a 0,418 (Melgaço), em 2010."}]},
+ {tema:"Cap. 16 · Gini",p:"No coeficiente de Gini, um país com valor próximo de 1 apresenta:",alts:[
+  {id:"a",t:"distribuição de renda muito desigual.",ok:true,e:"No Gini, quanto mais perto de 1, mais desigual; 1 seria uma pessoa com toda a renda."},
+  {id:"b",t:"distribuição de renda muito igualitária.",e:"Igualitária é perto de 0. Cuidado: a leitura é ao contrário da do IDH."},
+  {id:"c",t:"alto desenvolvimento humano.",e:"Quem mede desenvolvimento humano é o IDH."},
+  {id:"d",t:"alta produção de riqueza.",e:"O Gini não mede a produção de riqueza, e sim a distribuição."}]},
+ {tema:"Cap. 16 · Gini",p:"A Etiópia, país historicamente empobrecido, tem Gini de 0,350, menor que o do Brasil (0,529). Isso acontece porque o Gini:",alts:[
+  {id:"a",t:"mede a distribuição da riqueza, e não a produção dela.",ok:true,e:"Num país pobre a renda pode estar pouco concentrada, mesmo com bem-estar ruim."},
+  {id:"b",t:"mede a quantidade de riqueza produzida pelo país.",e:"Isso é o PIB. O Gini mede como a renda é repartida."},
+  {id:"c",t:"só pode ser calculado em países africanos.",e:"O Gini é calculado para países do mundo todo, inclusive o Brasil."},
+  {id:"d",t:"considera a qualidade da educação.",e:"Nem o Gini nem o IDH medem a qualidade da educação."}]},
+ {tema:"Cap. 17 · Desigualdade social",p:"Segundo o livro, a desigualdade social ocorre quando:",alts:[
+  {id:"a",t:"o acesso a alimentação adequada, moradia digna, educação e atendimento médico de qualidade não é garantido da mesma forma para todos.",ok:true,e:"É a definição do capítulo 17 (p. 66)."},
+  {id:"b",t:"todas as pessoas têm a mesma renda.",e:"Isso seria igualdade, o contrário da desigualdade."},
+  {id:"c",t:"o país tem PIB muito alto.",e:"PIB alto não define desigualdade; o Brasil tem PIB alto e grande desigualdade, mas uma coisa não é a definição da outra."},
+  {id:"d",t:"a população de um país diminui.",e:"Diminuição da população não é o que define desigualdade social."}]},
+ {tema:"Cap. 17 · Raízes",p:"No período colonial, a principal raiz da desigualdade social brasileira foi:",alts:[
+  {id:"a",t:"a concentração das terras nas mãos da elite latifundiária, com trabalho principalmente escravo.",ok:true,e:"Terra = poder político e econômico; trabalho escravo; trabalhadores livres sem acesso à terra."},
+  {id:"b",t:"a falta de vagas nas universidades públicas.",e:"A disputa pelas vagas na universidade é uma questão do período urbano-industrial, não do colonial."},
+  {id:"c",t:"a industrialização e a urbanização.",e:"Isso aconteceu no século XX, não no período colonial."},
+  {id:"d",t:"a Lei de Cotas.",e:"A Lei de Cotas é de 2012 e busca diminuir a desigualdade."}]},
+ {tema:"Cap. 17 · Ensino",p:"Sobre o Ensino Superior no Brasil, o livro afirma que:",alts:[
+  {id:"a",t:"as melhores instituições são públicas, e a Lei de Cotas (2012) garante vagas para alunos de escolas públicas, pretos, pardos e indígenas.",ok:true,e:"No Ensino Superior a tendência se inverte: as melhores são públicas."},
+  {id:"b",t:"as melhores instituições são particulares, como na Educação Básica.",e:"No Ensino Superior acontece o contrário da Educação Básica: as melhores são públicas."},
+  {id:"c",t:"a Lei de Cotas reserva vagas apenas para alunos de escolas particulares.",e:"As vagas são para alunos de escolas públicas, pretos, pardos e indígenas."},
+  {id:"d",t:"as vagas sempre foram ocupadas principalmente por alunos de escolas públicas.",e:"Historicamente, as vagas eram preenchidas por alunos que vinham da educação privada."}]},
+ {tema:"Cap. 17 · Regiões",p:"Quais regiões brasileiras apresentam os MAIORES rendimentos mensais médios por pessoa?",alts:[
+  {id:"a",t:"Centro-Oeste, Sudeste e Sul.",ok:true,e:"Os menores rendimentos estão no Norte e no Nordeste."},
+  {id:"b",t:"Norte e Nordeste.",e:"Norte e Nordeste têm os MENORES rendimentos."},
+  {id:"c",t:"Apenas o Norte.",e:"O Norte está entre as regiões de menor rendimento."},
+  {id:"d",t:"Nordeste e Sul.",e:"O Nordeste está entre as regiões de menor rendimento."}]},
+ {tema:"Cap. 17 · Qualidade de vida",p:"Segundo o livro, quando o poder público garante saneamento básico (água tratada, esgoto e coleta de lixo) para toda a população:",alts:[
+  {id:"a",t:"a qualidade de vida dos mais pobres tende a aumentar bastante, elevando a expectativa de vida.",ok:true,e:"É o que o livro diz na p. 74."},
+  {id:"b",t:"a desigualdade de renda aumenta.",e:"É o contrário: a falta desses serviços é que agrava a desigualdade."},
+  {id:"c",t:"nada muda na qualidade de vida.",e:"O saneamento influencia muito a qualidade de vida."},
+  {id:"d",t:"apenas quem tem transporte próprio é beneficiado.",e:"O saneamento beneficia toda a população, principalmente os mais pobres."}]},
+ {tema:"Cap. 17 · Gênero",p:"Sobre a desigualdade entre os gêneros no mercado de trabalho, o livro afirma que:",alts:[
+  {id:"a",t:"em muitos casos as mulheres recebem salários menores que os homens na mesma função, o que tem origens históricas na sociedade patriarcal.",ok:true,e:"Segundo o relatório citado, as mulheres recebem 19,4% a menos que os homens."},
+  {id:"b",t:"ela já deixou de existir no Brasil.",e:"O livro mostra que ela continua existindo, apesar dos avanços."},
+  {id:"c",t:"ela não existe nos cargos de liderança.",e:"É o contrário: nos cargos de liderança a diferença é ainda mais grave."},
+  {id:"d",t:"ela não tem relação com preconceito.",e:"O livro diz que ela revela um preconceito profundo e enraizado."}]}
+];
+
+/* ====== EMBARALHAMENTO COM SEMENTE FIXA (mulberry32) ====== */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var rnd=mulberry32(713142240);
+Q.forEach(function(q){ var arr=q.alts.slice(); for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp; } q.ordem=arr; });
+
+/* ====== ESTADO ====== */
+var CHAVE=KIT+'_quiz_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {resp:{},enviado:false}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+var LETRAS='ABCDEFGHJKLMNPQRSTUVWXYZ';
+function gerarCodigo(ac){ var xx=(ac<10?'0':'')+ac; var yy=LETRAS[Math.floor(Math.random()*LETRAS.length)]+LETRAS[Math.floor(Math.random()*LETRAS.length)]; return 'MED-'+xx+'-'+yy; }
+
+function render(){
+  var c=document.getElementById('questoes'); var h='';
+  Q.forEach(function(q,i){
+    h+='<div class="q" id="q'+i+'"><span class="tema">'+q.tema+'</span><div class="num">Questão '+(i+1)+' de '+Q.length+'</div><h3>'+q.p+'</h3>';
+    q.ordem.forEach(function(a,k){
+      var letra='abcd'[k]; var sel=estado.resp[i]===a.id;
+      var cls='alt'+(sel?' sel':'');
+      if(estado.gabarito){ if(a.ok) cls+=' certa'; else if(sel) cls+=' marcada-errada'; else cls+=' errada'; }
+      h+='<label class="'+cls+'"><input type="radio" name="q'+i+'" value="'+a.id+'" '+(sel?'checked':'')+' '+(estado.enviado?'disabled':'')+' onchange="marcar('+i+',\''+a.id+'\')"> <b>'+letra+')</b> '+a.t;
+      if(estado.gabarito){ h+='<div class="exp show">'+(a.ok?'✅ ':'')+a.e+'</div>'; }
+      h+='</label>';
+    });
+    h+='</div>';
+  });
+  c.innerHTML=h;
+  atualizarBarra();
+  if(estado.enviado){ mostrarEnviado(); }
+  atualizarTrilhaFim();
+}
+function marcar(i,id){ if(estado.enviado) return; estado.resp[i]=id; salvar(); var q=document.getElementById('q'+i); var labs=q.querySelectorAll('.alt'); for(var k=0;k<labs.length;k++){ labs[k].classList.toggle('sel', labs[k].querySelector('input').value===id); } atualizarBarra(); }
+function atualizarBarra(){ var n=Object.keys(estado.resp).length; document.getElementById('barra').style.width=(n/Q.length*100)+'%'; var b=document.getElementById('btn-enviar'); if(!estado.enviado){ b.disabled=n<Q.length; b.textContent=n<Q.length?'📨 Enviar respostas ('+n+' de '+Q.length+' respondidas)':'📨 Enviar respostas'; } }
+function enviar(){
+  if(estado.enviado) return;
+  var ac=0; Q.forEach(function(q,i){ var a=q.alts.filter(function(x){return x.id===estado.resp[i];})[0]; if(a&&a.ok) ac++; });
+  estado.acertos=ac; estado.total=Q.length; estado.codigo=gerarCodigo(ac); estado.enviado=true; estado.concluido=true; estado.concluidoEm=new Date().toISOString();
+  salvar(); render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mostrarEnviado(){
+  var b=document.getElementById('btn-enviar'); b.disabled=true; b.textContent='✅ Quiz enviado — respostas travadas';
+  document.getElementById('codigo').classList.add('show'); document.getElementById('cod').textContent=estado.codigo;
+  document.getElementById('codtxt').textContent='Anote este código para os pais. Ele abre o gabarito comentado e o relatório no Início.';
+  document.getElementById('gab').classList.add('show');
+}
+function abrirGab(){ var v=document.getElementById('gab-in').value.trim().toUpperCase(); var m=document.getElementById('gab-msg'); if(v===estado.codigo||v==='PAIS-77'){ estado.gabarito=true; salvar(); render(); m.innerHTML='<span style="color:#8fe0b4">Gabarito liberado: '+estado.acertos+' acertos de '+Q.length+'.</span>'; } else { m.innerHTML='<span style="color:#ffb3b3">Código incorreto.</span>'; } }
+function atualizarTrilhaFim(){
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox'); var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Quiz enviado — Resumo destravado!'; txt.textContent=estado.concluido?'Agora use o Resumo para fechar as dúvidas que o Quiz mostrou.':'Trilha liberada pelos pais.'; btn.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Resumo'; txt.textContent='Destrava quando você enviar o Quiz.'; btn.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='quiz_alfaiataria-dos-indices.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Apagar as respostas deste Quiz? (Se ele já foi enviado, o código e a conclusão são mantidos.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ if(!estado.enviado){ estado={resp:{},enviado:false}; salvar(); render(); } else { mostrarModal('O Quiz já foi enviado: as respostas ficam travadas. Para refazer do zero, use "Zerar o kit inteiro" no Início.',false); acaoZerar=null; return; } } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ render(); } else { marcarNav(); }
+</script>
+</body>
+</html>

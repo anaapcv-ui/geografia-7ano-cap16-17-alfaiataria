@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo · Alfaiataria dos Índices · Geografia 7º</title>
+<style>
+  :root{--palco:#15131a;--palco2:#211e28;--aco:#353042;--aco2:#4a4459;--ambar:#f2d36b;--ciano:#3cc9b6;--terra:#e88fb0;--verde:#3ddc84;--vermelho:#ef5b5b;--texto:#f1eee8;--cinza:#a39db0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#2a2533,#15131a 60%),var(--palco);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#2e2814,#16261b 50%,#2a1420);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--ambar)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#fff0c2;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#efe6d2;font-size:.92rem}
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--palco2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--ambar);color:#2a1a00;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--ambar);font-size:1.1rem;margin-bottom:8px}
+  .sec{margin:26px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sec h2{font-size:1.25rem}
+  .sec .pill{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:var(--ambar);color:#2a1a00;font-weight:bold}
+  .sec .pill.c17{background:var(--ciano);color:#03262c}
+  .sec .pill.mam{background:var(--terra);color:#2a0d05}
+  .sec .pill.all{background:var(--verde);color:#04231a}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+  .card{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:14px;border-top:4px solid var(--ambar)}
+  .card.c17{border-top-color:var(--ciano)}
+  .card.mam{border-top-color:var(--terra)}
+  .card h3{font-size:1rem;margin-bottom:8px}
+  .card ul{margin-left:18px}
+  .card li{margin-bottom:5px;font-size:.93rem}
+  .card b{color:var(--ambar)}
+  .card.c17 b{color:var(--ciano)}
+  .card.mam b{color:var(--terra)}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.92rem;box-shadow:3px 4px 10px rgba(0,0,0,.4);transform:rotate(-1deg);margin:12px 0}
+  .postit b{color:#7a4a00}
+  .peg{background:#3a1414;border:2px solid var(--vermelho);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+  .peg b{color:#ffb3b3}
+  .narrador{background:#142a28;border-left:4px solid var(--ciano);border-radius:0 12px 12px 0;padding:10px 14px;margin:12px 0;font-size:.92rem;font-style:italic;color:#d4f2ec}
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .flip{perspective:900px;height:190px;cursor:pointer}
+  .flip .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .inner{transform:rotateY(180deg)}
+  .flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.88rem}
+  .flip .front{background:linear-gradient(135deg,#2e2839,#211e28);border:1px solid var(--aco2);font-weight:bold}
+  .flip .front small{display:block;color:var(--cinza);font-weight:normal;font-size:.72rem;margin-top:6px}
+  .flip .back{background:#0e2b1f;border:1px solid var(--verde);transform:rotateY(180deg)}
+  .tabela{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+  .tabela th,.tabela td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  .tabela th{background:#2a2534}
+  .tabela th.c16{color:var(--ambar)} .tabela th.c17{color:var(--ciano)}
+  .scroll{overflow-x:auto}
+  .fluxo{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:8px}
+  .fluxo .et{flex:1;min-width:120px;background:#1b1921;border:1px solid var(--aco2);border-left:4px solid var(--ciano);border-radius:0 10px 10px 0;padding:10px;font-size:.86rem}
+  .fluxo .et b{color:var(--ciano)}
+  .gloss{columns:2;column-gap:18px}
+  .gloss div{break-inside:avoid;margin-bottom:8px;font-size:.9rem}
+  .gloss b{color:var(--ambar)}
+  @media(max-width:600px){.gloss{columns:1}}
+  .fim{background:linear-gradient(120deg,#122a1f,#163a2a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#8fe0b4;margin-bottom:8px}
+  .fim button{background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px;cursor:pointer;font-family:inherit}
+  .fim button:disabled{background:#2b2732;color:#7d7789;cursor:not-allowed}
+  .fim a.btn{display:inline-block;margin:6px;background:var(--ciano);color:#03262c;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#2b2732;color:#7d7789;pointer-events:none}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--palco2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .mini{background:var(--palco);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,10,7,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--palco2);border:1px solid var(--ambar);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a{display:inline-block;background:var(--ambar);color:#2a1a00;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+
+  .regua-box{background:var(--palco2);border:1px solid var(--aco);border-radius:14px;padding:16px 16px 10px}
+  .regua-tit{font-weight:bold;font-size:.9rem;margin-bottom:34px;color:var(--ambar)}
+  .regua{position:relative;height:26px;border-radius:6px;background:linear-gradient(90deg,#3a2a2a,#2b2732)}
+  .regua.gini{background:linear-gradient(90deg,#1f4a3c,#4a3a1f 50%,#5a1f24)}
+  .faixa{position:absolute;top:0;height:100%;font-size:.68rem;display:flex;align-items:center;justify-content:center;color:#15131a;font-weight:bold;border-right:1px solid #15131a;overflow:hidden;white-space:nowrap}
+  .faixa.f1{background:#ef8a7a}.faixa.f2{background:#f2b36b}.faixa.f3{background:#f2d36b}.faixa.f4{background:#5fd38a}
+  .marca{position:absolute;top:-6px;width:3px;height:38px;background:#fff;transform:translateX(-1px)}
+  .marca span{position:absolute;top:40px;left:50%;transform:translateX(-50%);font-size:.7rem;white-space:nowrap;text-align:center;color:var(--texto);line-height:1.2}
+  .marca.cima span{top:auto;bottom:40px}
+  .regua-nota{font-size:.85rem;color:var(--cinza)}
+
+  h1,h2,h3{font-family:Georgia,'Times New Roman',serif;letter-spacing:.2px}
+  .fita{height:16px;background:
+    repeating-linear-gradient(90deg,rgba(23,21,28,.85) 0 2px,transparent 2px 10px) 0 0/100% 6px no-repeat,
+    repeating-linear-gradient(90deg,rgba(23,21,28,.95) 0 2px,transparent 2px 50px) 0 0/100% 11px no-repeat,
+    linear-gradient(#f2d36b,#e8c654);box-shadow:0 3px 8px rgba(0,0,0,.45)}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Alfaiataria dos Índices · Geografia 7º ano · CCF</div>
+  <h1>🗺️ Resumo — O Mostruário</h1>
+  <p>Tudo que cai, em fitas, cards, cartas e post-its · Capítulos 16 e 17</p>
+</header>
+<div class="fita"></div>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a class="on" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🗺️ O mostruário do ateliê</h2>
+    <p>Use este resumo para fechar as dúvidas que o Quiz mostrou e para revisar na véspera. Leia até o fim: lá embaixo está o botão <b>"Li o resumo até o fim"</b>, que destrava o <b>📝 Simulado</b>.</p>
+  </div>
+  <div class="painel"><span id="salvo">📏 Rolagem máxima: 0%</span><button class="mini" onclick="exportar()">📥 Exportar</button></div>
+
+  <div class="narrador">🧵 Nota do narrador: no ateliê, cada índice é uma fita métrica diferente. Uma mede a altura (PIB), outra mede três partes do corpo de uma vez (IDH) e outra mede se o tecido foi cortado em pedaços iguais (Gini). Nenhuma sozinha diz se a roupa serve — por isso o livro manda usar todas juntas.</div>
+
+  <div class="sec"><span class="pill all">Capítulo 16</span><h2>📏 As três fitas métricas</h2></div>
+  <div class="scroll">
+  <table class="tabela">
+    <thead><tr><th> </th><th class="c16">🏭 PIB / PIB per capita</th><th class="c16">📐 IDH</th><th class="c17">✂️ Coeficiente de Gini</th></tr></thead>
+    <tbody>
+      <tr><td><b>O que mede</b></td><td>A riqueza produzida e vendida pelo país (lucros, salários, investimentos do governo). Per capita = dividido pelos habitantes.</td><td>O desenvolvimento humano: <b>renda</b>, <b>longevidade</b> e <b>educação</b>.</td><td>A <b>desigualdade na distribuição</b> da renda.</td></tr>
+      <tr><td><b>Escala</b></td><td>Valor em dinheiro (geralmente dólares, por ano).</td><td>0 a 1 — <b>quanto maior, melhor</b>.</td><td>0 a 1 — <b>quanto maior, mais desigual</b>.</td></tr>
+      <tr><td><b>Quem criou</b></td><td>Medida usada desde antes de 1945.</td><td>Amartya Sen e Mahbub ul Haq, <b>1990</b>; adotado pela ONU.</td><td>Corrado Gini, estatístico italiano, <b>1912</b>.</td></tr>
+      <tr><td><b>Ponto forte</b></td><td>Padrões internacionais: permite comparar economias.</td><td>Vai além da economia: inclui saúde e educação.</td><td>Mostra o que o IDH não mostra: a concentração de renda.</td></tr>
+      <tr><td><b>Limite (cai na prova!)</b></td><td>Não mede bem-estar; esconde a desigualdade; não considera poder de compra, saúde e educação.</td><td>Não mede a <b>qualidade</b> da educação; não mostra a desigualdade entre áreas de um país.</td><td>Não mede a <b>produção</b> de riqueza: países pobres podem ter Gini menor.</td></tr>
+      <tr><td><b>Brasil</b></td><td>Entre as maiores economias, mas PIB per capita ≈ 10 300 dólares (82º, 2024).</td><td>0,760 (2022), elevado, 89º.</td><td>0,529 — muito alto; 10º mais desigual em 2017.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="postit">📌 <b>Dica de prova:</b> IDH e Gini usam a mesma régua de 0 a 1, mas em sentidos opostos. IDH perto de 1 = 😀 desenvolvimento alto. Gini perto de 1 = 😟 desigualdade alta.</div>
+
+  <div class="sec"><span class="pill">Capítulo 16</span><h2>🏭 PIB, PIB per capita e PPC</h2></div>
+  <div class="grid">
+    <div class="card"><h3>🏭 PIB</h3><ul>
+      <li><b>Produto Interno Bruto</b>: riqueza gerada pela produção e comercialização de <b>todos os setores</b>.</li>
+      <li>Considera <b>lucros</b>, <b>salários</b> e <b>investimentos do governo</b>.</li>
+      <li>Geralmente por <b>1 ano</b>; convertido em <b>dólares</b> para comparar.</li>
+      <li>Depois da <b>ONU (1945)</b>, o mundo quis medir se os países melhoravam.</li></ul></div>
+    <div class="card"><h3>👕 PIB per capita</h3><ul>
+      <li>PIB <b>÷ número de habitantes</b>.</li>
+      <li><b>Per capita</b> (latim) = "por indivíduo", "por cabeça".</li>
+      <li>Falha: reparte como se fosse igual → <b>esconde a desigualdade</b>.</li>
+      <li>Pode ser usado para <b>"maquiar"</b> o desenvolvimento.</li></ul></div>
+    <div class="card"><h3>🧺 PIB per capita PPC</h3><ul>
+      <li><b>Paridade de Poder de Compra</b>: corrige pelo <b>custo de vida</b>.</li>
+      <li>"Cesta internacional" de produtos básicos; referência: <b>EUA</b> (lá, os dois valores são iguais).</li>
+      <li>PIB per capita <b>&gt;</b> PPC → custo de vida <b>elevado</b>.</li>
+      <li>Ainda não considera <b>saúde, educação</b> nem a <b>desigualdade</b>.</li></ul></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> "País com PIB enorme = população rica" está ERRADO. O PIB mede o tamanho da economia; a riqueza pode estar concentrada em poucas mãos.</div>
+
+  <div class="sec"><span class="pill">Capítulo 16</span><h2>📐 IDH, IDHM e Gini</h2></div>
+  <div class="grid">
+    <div class="card"><h3>📐 IDH — 3 parâmetros</h3><ul>
+      <li><b>Renda</b>: RNB (Rendimento Nacional Bruto) per capita PPC.</li>
+      <li><b>Longevidade</b>: expectativa de vida <b>ao nascer</b>.</li>
+      <li><b>Educação</b>: anos de escola esperados + média de anos de estudo de quem tem <b>25 anos ou mais</b>.</li>
+      <li>Amartya Sen: desenvolver = dar ao cidadão condições de <b>fazer escolhas</b> e exercer a cidadania.</li></ul></div>
+    <div class="card"><h3>🪡 Furos do IDH</h3><ul>
+      <li>Não mede a <b>qualidade</b> da educação (anos de estudo ≠ ensino bom).</li>
+      <li>A renda usa o PIB per capita PPC → <b>não mostra desigualdades</b>.</li>
+      <li>Saúde é mais "honesta": para aumentar a longevidade é preciso resolver problemas reais — muitos países travaram depois dos anos 1990.</li>
+      <li>Pode ser medido em <b>qualquer localidade</b>: município, estado, região.</li></ul></div>
+    <div class="card"><h3>🏙️ IDHM (Brasil)</h3><ul>
+      <li>Brasil é <b>continental</b> e populoso → índice <b>municipal</b>.</li>
+      <li>PNUD (órgão da ONU), 2010:</li>
+      <li>Melhor: <b>São Caetano do Sul (SP) — 0,862</b>.</li>
+      <li>Pior: <b>Melgaço (PA) — 0,418</b>.</li></ul></div>
+    <div class="card c17"><h3>✂️ Coeficiente de Gini</h3><ul>
+      <li>Mede a <b>distribuição</b> (não a produção) da riqueza.</li>
+      <li>Perto de <b>0</b> = igualitário; perto de <b>1</b> = desigual.</li>
+      <li><b>Etiópia 0,350</b> (pobre, pouco desigual) × <b>Brasil 0,529</b> (muito desigual).</li>
+      <li>Ideal: usar <b>todos os índices juntos</b>.</li></ul></div>
+  </div>
+
+  <div class="sec"><span class="pill all">Régua visual</span><h2>📏 Onde cada país fica na fita</h2></div>
+  <div class="regua-box">
+    <div class="regua-tit">IDH (0 = pior · 1 = melhor)</div>
+    <div class="regua">
+      <div class="faixa f1" style="left:0;width:55%">baixo &lt; 0,550</div>
+      <div class="faixa f2" style="left:55%;width:15%">médio</div>
+      <div class="faixa f3" style="left:70%;width:10%">elevado</div>
+      <div class="faixa f4" style="left:80%;width:20%">muito elevado</div>
+      <div class="marca" style="left:38.1%"><span>Sudão do Sul<br>0,381</span></div>
+      <div class="marca cima" style="left:76%"><span>Brasil 0,760</span></div>
+      <div class="marca" style="left:76.3%"><span>Média América<br>Latina 0,763</span></div>
+      <div class="marca cima" style="left:95.2%"><span>Suíça 0,952</span></div>
+    </div>
+    <div class="regua-tit" style="margin-top:58px">Gini (0 = igualitário · 1 = desigual)</div>
+    <div class="regua gini">
+      <div class="marca" style="left:35%"><span>Etiópia 0,350</span></div>
+      <div class="marca cima" style="left:52.9%"><span>Brasil 0,529</span></div>
+    </div>
+    <p class="regua-nota" style="margin-top:52px">Repare: o Brasil está à frente da Etiópia no IDH, mas fica mais para a "ponta ruim" na fita do Gini.</p>
+  </div>
+
+  <div class="sec"><span class="pill c17">Capítulo 17</span><h2>⚖️ A desigualdade social</h2></div>
+  <div class="grid">
+    <div class="card c17"><h3>⚖️ O que é</h3><ul>
+      <li>Contrastes na sociedade: acesso a <b>alimentação adequada, moradia digna, educação e atendimento médico</b> não garantido igual para todos.</li>
+      <li>Existe no mundo todo, em níveis diferentes; o Brasil tem <b>uma das maiores taxas</b>.</li>
+      <li><b>Art. 3º da Constituição (1988)</b>: erradicar a pobreza e <b>reduzir as desigualdades sociais e regionais</b>.</li></ul></div>
+    <div class="card c17"><h3>💰 Concentração de renda</h3><ul>
+      <li>Brasil: grande PIB, mas PIB per capita ≈ <b>10 300 dólares</b> (82º, 2024).</li>
+      <li>2022: os <b>5% mais ricos</b> tinham <b>39,9%</b> da renda.</li>
+      <li>Mundo: <b>menos de 10%</b> da população controla grande parte da renda.</li>
+      <li>Impostos: <b>progressivo</b> = quem ganha mais paga mais; <b>regressivo</b> = pesa mais nos pobres. Brasil: baixa progressividade.</li></ul></div>
+    <div class="card c17"><h3>👩‍💼 Gênero</h3><ul>
+      <li>Mulheres: mais dificuldade para <b>entrar no mercado de trabalho</b>.</li>
+      <li>Salários <b>menores na mesma função</b>: <b>19,4% a menos</b> (relatório de 2024).</li>
+      <li>Pior nos <b>cargos de liderança</b>.</li>
+      <li>Origem histórica: <b>sociedade patriarcal</b>.</li></ul></div>
+  </div>
+
+  <div class="sec"><span class="pill c17">Capítulo 17</span><h2>🌱 Linha do tempo das raízes</h2></div>
+  <div class="fluxo">
+    <div class="et"><b>Período colonial</b><br>Terras concentradas na <b>elite latifundiária</b> = poder; trabalho principalmente <b>escravo</b>.</div>
+    <div class="et"><b>Abolição</b><br>A condição <b>não mudou</b> de forma significativa.</div>
+    <div class="et"><b>Século XX</b><br>Industrialização e urbanização: a chave para a renda passa a ser a <b>educação</b>.</div>
+    <div class="et"><b>Até 1970</b><br>Escola pública <b>boa, mas para poucos</b>. Depois: mais vagas, sem qualidade; escolas particulares para classe média e elite.</div>
+    <div class="et"><b>2012</b><br><b>Lei de Cotas</b>: vagas nas universidades públicas para alunos de escola pública, pretos, pardos e indígenas.</div>
+  </div>
+  <div class="postit">📌 <b>Dica de prova:</b> agroexportador → faltava <b>terra</b>; urbano-industrial → falta <b>formação escolar</b>. No Ensino Superior a tendência se <b>inverte</b>: as melhores são públicas.</div>
+
+  <div class="sec"><span class="pill c17">Capítulo 17</span><h2>🗺️ Desigualdades regionais e qualidade de vida</h2></div>
+  <div class="scroll">
+  <table class="tabela">
+    <thead><tr><th>Indicador</th><th class="c17">Pior situação</th><th class="c16">Melhor situação</th></tr></thead>
+    <tbody>
+      <tr><td><b>Rendimento médio por pessoa</b></td><td>Norte e Nordeste (menores)</td><td>Centro-Oeste, Sudeste e Sul (maiores)</td></tr>
+      <tr><td><b>Analfabetismo</b></td><td>Nordeste, seguido do Norte (maiores taxas)</td><td>Sul e Sudeste (menores taxas)</td></tr>
+      <tr><td><b>Expectativa de vida</b></td><td>Tende a ser menor onde renda e escolaridade são menores</td><td>Maior onde renda e escolaridade são maiores</td></tr>
+      <tr><td><b>Água tratada (área urbana)</b></td><td>Norte: 72,2%</td><td>Sul: 98,9% · Brasil: 84,2% da população com acesso</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <div class="card c17"><h3>🚰 Além da renda</h3><ul>
+      <li><b>Boas escolas e hospitais públicos</b>: a diferença de renda perde importância.</li>
+      <li><b>Saneamento básico</b> (lixo, esgoto, água tratada) para todos: melhora a vida dos mais pobres e a expectativa de vida.</li>
+      <li><b>Transporte coletivo</b> eficiente, confortável e barato: mobilidade para quem tem baixa renda.</li>
+      <li>Sem esses serviços, a desigualdade de renda é <b>agravada</b>.</li></ul></div>
+    <div class="card c17"><h3>⚠️ Fatores de risco</h3><ul>
+      <li><b>Violência urbana</b>.</li>
+      <li>Atividades do <b>narcotráfico</b>.</li>
+      <li><b>Mortes no trânsito</b> (entram no cálculo).</li>
+      <li>Todos <b>diminuem a expectativa de vida</b> de quem convive com eles.</li></ul></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> a desigualdade no Brasil <b>não é homogênea</b> — ela muda de região para região. E "Norte e Nordeste" são as regiões de <b>menor</b> renda, não de maior.</div>
+
+  <div class="sec"><span class="pill all">Vire as cartas</span><h2>🃏 Teste-relâmpago</h2></div>
+  <div class="flips">
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Per capita<small>o que significa?</small></div><div class="face back">"Por indivíduo" (latim): o PIB <b>dividido pelo número de habitantes</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">PIB per capita &gt; PPC<small>o que indica?</small></div><div class="face back">Custo de vida <b>elevado</b>: o poder de compra é menor do que o PIB per capita sugere.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">IDH 0,720<small>qual faixa?</small></div><div class="face back"><b>Elevado</b> (0,700 a 0,799).</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Gini perto de 1<small>bom ou ruim?</small></div><div class="face back"><b>Ruim</b>: renda muito concentrada (mais desigualdade).</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Longevidade<small>como é medida?</small></div><div class="face back">Pela <b>expectativa de vida ao nascer</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">IDHM<small>por que usar no Brasil?</small></div><div class="face back">País <b>continental e populoso</b>: o índice por município mostra as diferenças internas.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Imposto progressivo<small>e o regressivo?</small></div><div class="face back"><b>Progressivo</b>: quem ganha mais paga mais. <b>Regressivo</b>: a carga pesa mais nos pobres.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Lei de Cotas<small>quando e para quem?</small></div><div class="face back"><b>2012</b>: vagas para alunos de escolas públicas, pretos, pardos e indígenas.</div></div></div>
+  </div>
+
+  <div class="sec"><h2>📚 Glossário</h2></div>
+  <div class="gloss">
+    <div><b>PIB</b> — Produto Interno Bruto: riqueza produzida e comercializada por um país, geralmente em um ano.</div>
+    <div><b>Per capita</b> — "por indivíduo"; dividido pelo número de habitantes.</div>
+    <div><b>PPC</b> — Paridade de Poder de Compra: correção pelo custo de vida do país.</div>
+    <div><b>Poder de compra</b> — o quanto se consegue comprar com uma quantia de dinheiro.</div>
+    <div><b>IDH</b> — Índice de Desenvolvimento Humano: renda, longevidade e educação (0 a 1).</div>
+    <div><b>RNB</b> — Rendimento Nacional Bruto: medida da renda usada no IDH.</div>
+    <div><b>Longevidade</b> — tempo de vida; no IDH, expectativa de vida ao nascer.</div>
+    <div><b>IDHM</b> — IDH calculado para cada município.</div>
+    <div><b>PNUD</b> — Programa das Nações Unidas para o Desenvolvimento (ligado à ONU).</div>
+    <div><b>Coeficiente de Gini</b> — mede a desigualdade na distribuição da renda (0 a 1).</div>
+    <div><b>Desigualdade social</b> — acesso desigual a alimentação, moradia, educação e saúde.</div>
+    <div><b>Concentração de renda</b> — grande parte da renda nas mãos de poucas pessoas.</div>
+    <div><b>Alíquota</b> — percentual usado para calcular um imposto.</div>
+    <div><b>Elite latifundiária</b> — o grupo que concentrava as terras no período colonial (e, com elas, o poder).</div>
+    <div><b>Lei de Cotas</b> — política pública (2012) que reserva vagas no Ensino Superior público.</div>
+    <div><b>Saneamento básico</b> — coleta de lixo, tratamento de esgoto e água tratada.</div>
+    <div><b>Sociedade patriarcal</b> — onde estão as origens históricas do preconceito que gera a desigualdade de gênero.</div>
+  </div>
+
+  <div class="fim" id="fim">
+    <h3 id="fim-h3">🔒 Próxima etapa: Simulado</h3>
+    <p id="fim-txt">Role até aqui e confirme a leitura para destravar o Simulado.</p>
+    <button id="btn-li" onclick="confirmarLeitura()" disabled>✅ Li o resumo até o fim</button>
+    <a class="btn off" id="btn-prox" href="simulado.html">📝 Pronto para o Simulado!</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 📏🧵✂️</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Resumo, envie o Quiz.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='alfaiataria_indices';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('resumo')) return true;
+  var L=lerJSON(KIT+'_leitura_v1');
+  document.getElementById('lock-txt').textContent=(L&&L.concluido)?'Para abrir o Resumo, envie o Quiz.':'Para abrir o Resumo, conclua a Leitura Guiada e envie o Quiz.';
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== ESTADO DO RESUMO ====== */
+var CHAVE=KIT+'_resumo_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {rolagemMax:0}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } document.getElementById('salvo').textContent='📏 Rolagem máxima: '+Math.round(estado.rolagemMax||0)+'%'; }
+function medirRolagem(){
+  var h=document.documentElement; var total=h.scrollHeight-h.clientHeight; var pct= total<=0?100:Math.min(100,(window.scrollY||h.scrollTop)/total*100);
+  if(pct>(estado.rolagemMax||0)){ estado.rolagemMax=pct; salvar(); }
+  var b=document.getElementById('btn-li'); if(!estado.concluido && (estado.rolagemMax||0)>=90){ b.disabled=false; }
+}
+function confirmarLeitura(){ if(estado.concluido) return; if((estado.rolagemMax||0)<90) return; estado.concluido=true; estado.concluidoEm=new Date().toISOString(); salvar(); atualizarFim(); }
+function atualizarFim(){
+  var h3=document.getElementById('fim-h3'), txt=document.getElementById('fim-txt'), b=document.getElementById('btn-li'), a=document.getElementById('btn-prox');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Resumo lido — Simulado destravado!'; txt.textContent=estado.concluido?'Agora encare o Simulado valendo, como se fosse a prova.':'Trilha liberada pelos pais.'; b.disabled=!!estado.concluido||(estado.rolagemMax||0)<90; b.textContent=estado.concluido?'✅ Resumo concluído':'✅ Li o resumo até o fim'; a.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Simulado'; txt.textContent=(estado.rolagemMax||0)>=90?'Confirme a leitura para destravar o Simulado.':'Role até o fim da página para habilitar o botão (rolagem: '+Math.round(estado.rolagemMax||0)+'%).'; a.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='resumo_alfaiataria-dos-indices.json'; a.click(); }
+
+if(checarTrava()){ salvar(); atualizarFim(); window.addEventListener('scroll',function(){ medirRolagem(); atualizarFim(); }); setTimeout(function(){ medirRolagem(); atualizarFim(); },300); } else { marcarNav(); }
+</script>
+</body>
+</html>
